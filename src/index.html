@@ -1284,7 +1284,7 @@
                 
                 <div class="settings-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
                   <!-- High Contrast Toggle (Accessible design) -->
-                  <div class="setting-item" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
+                  <div class="setting-item" id="setting-high-contrast" role="button" tabindex="0" aria-label="Alternar Contraste Alto" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
                     <div style="display: flex; align-items: center; gap: 12px; color: var(--color-text-dark); font-weight: 600; font-size: 14px;">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);">
                         <circle cx="12" cy="12" r="10"/>
@@ -1298,12 +1298,12 @@
                   </div>
                   
                   <!-- Font size selector -->
-                  <div class="setting-item" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
+                  <div class="setting-item" id="setting-font-size" role="button" tabindex="0" aria-label="Ajustar tamanho da letra" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
                     <div style="display: flex; align-items: center; gap: 12px; color: var(--color-text-dark); font-weight: 600; font-size: 14px;">
                       <span style="font-size: 16px; font-weight: 800; color: var(--color-primary); width: 20px; text-align: center;">A+</span>
                       Tamanho da Letra
                     </div>
-                    <span style="font-size: 12px; font-weight: 700; color: var(--color-text-muted);">Médio</span>
+                    <span id="font-size-status" style="font-size: 12px; font-weight: 700; color: var(--color-text-muted);">Médio</span>
                   </div>
                 </div>
                 
@@ -1410,6 +1410,9 @@
     </main>
     
   </div>
+
+  <!-- WAI-ARIA Live Announcer for screen readers and vocal synthesis accessibility -->
+  <div id="app-live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 
   <script src="js/main.js"></script>
 </body>

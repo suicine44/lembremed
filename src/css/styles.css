@@ -72,6 +72,23 @@ body {
   min-height: 100vh;
   display: flex;
   overflow: hidden;
+  --font-scale: 1.00;
+}
+
+body.font-small {
+  --font-scale: 0.85;
+}
+
+body.font-medium {
+  --font-scale: 1.00;
+}
+
+body.font-large {
+  --font-scale: 1.15;
+}
+
+body.font-xlarge {
+  --font-scale: 1.30;
 }
 
 /* Simulator Dashboard Structure */
@@ -381,6 +398,7 @@ body {
 .screen-content {
   flex-grow: 1;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   padding: 16px 20px 24px 20px;
   display: flex;
   flex-direction: column;
@@ -1447,8 +1465,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 160px;
-  overflow-y: auto;
   padding: 4px;
 }
 
@@ -1878,5 +1894,136 @@ body {
 .btn-confirm-approve:hover {
   background-color: #7f1d1d;
 }
+
+/* ==========================================================================
+   ESCALONAMENTO DINÂMICO DE TIPOGRAFIA (IHC / ACESSIBILIDADE DE IDOSOS)
+   ========================================================================== */
+
+/* Redefinições cirúrgicas de fontes baseadas na escala tipográfica global */
+.phone-screen h1, 
+.phone-screen .welcome-title {
+  font-size: calc(22px * var(--font-scale)) !important;
+}
+
+.phone-screen .welcome-subtitle {
+  font-size: calc(14px * var(--font-scale)) !important;
+}
+
+.phone-screen h2, 
+.phone-screen .section-title {
+  font-size: calc(18px * var(--font-scale)) !important;
+}
+
+.phone-screen h3, 
+.phone-screen .role-card h3,
+.phone-screen .caregiver-contact-info h4,
+.phone-screen .med-card-info h4,
+.phone-screen .modal-title {
+  font-size: calc(16px * var(--font-scale)) !important;
+}
+
+.phone-screen h4, 
+.phone-screen .med-time,
+.phone-screen .agenda-section-title {
+  font-size: calc(14px * var(--font-scale)) !important;
+}
+
+.phone-screen p, 
+.phone-screen .role-card p,
+.phone-screen .caregiver-contact-info p,
+.phone-screen .med-card-info p,
+.phone-screen .modal-message {
+  font-size: calc(13px * var(--font-scale)) !important;
+}
+
+.phone-screen .med-dose {
+  font-size: calc(13px * var(--font-scale)) !important;
+}
+
+.phone-screen .btn-primary, 
+.phone-screen .btn-secondary, 
+.phone-screen .btn-emergency-call,
+.phone-screen .btn-confirm-cancel,
+.phone-screen .btn-confirm-approve {
+  font-size: calc(14px * var(--font-scale)) !important;
+}
+
+.phone-screen .nav-tab {
+  font-size: calc(11px * var(--font-scale)) !important;
+}
+
+.phone-screen .calendar-day .day-number {
+  font-size: calc(16px * var(--font-scale)) !important;
+}
+
+.phone-screen .calendar-day .day-name {
+  font-size: calc(11px * var(--font-scale)) !important;
+}
+
+.phone-screen .setting-item {
+  font-size: calc(14px * var(--font-scale)) !important;
+}
+
+.phone-screen #font-size-status {
+  font-size: calc(12px * var(--font-scale)) !important;
+}
+
+.phone-screen .form-control {
+  font-size: calc(14px * var(--font-scale)) !important;
+}
+
+/* ==========================================================================
+   ESTILOS DE CONTORNO DE FOCO ACESSÍVEL (WCAG OPERÁVEL)
+   ========================================================================== */
+
+/* Foco em botões e abas operáveis por teclado */
+.phone-screen .btn-primary:focus-visible,
+.phone-screen .btn-secondary:focus-visible,
+.phone-screen .btn-emergency-call:focus-visible,
+.phone-screen .btn-confirm-cancel:focus-visible,
+.phone-screen .btn-confirm-approve:focus-visible,
+.phone-screen .btn-emergency:focus-visible,
+.phone-screen #btn-hangup-call:focus-visible {
+  outline: 3px dashed var(--color-primary) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.4) !important;
+}
+
+.phone-screen .nav-tab:focus-visible {
+  outline: 3px dashed var(--color-primary) !important;
+  outline-offset: -2px !important;
+  border-radius: var(--radius-sm) !important;
+  background-color: var(--color-bg-secondary) !important;
+}
+
+.phone-screen .role-card:focus-visible {
+  outline: 3px dashed var(--color-primary) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.2) !important;
+}
+
+.phone-screen .agenda-med-card:focus-visible {
+  outline: 3px dashed var(--color-primary) !important;
+  outline-offset: 2px !important;
+  box-shadow: var(--shadow-md), 0 0 0 4px rgba(0, 168, 255, 0.2) !important;
+}
+
+.phone-screen .setting-item:focus-visible {
+  outline: 3px dashed var(--color-primary) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.2) !important;
+}
+
+.phone-screen .form-control:focus-visible {
+  outline: 3px solid var(--color-primary) !important;
+  outline-offset: 0 !important;
+  border-color: var(--color-primary-dark) !important;
+}
+
+/* Espaçamento adaptativo inferior específico para garantir respiro visual na rolagem da Tela 11 */
+#screen-11 .screen-content {
+  padding-bottom: calc(56px * var(--font-scale, 1)) !important;
+}
+
 
 

@@ -301,11 +301,13 @@ document.addEventListener('DOMContentLoaded', () => {
             med.status = 'tomado';
             row.querySelector('.med-status-indicator').textContent = 'Tomado';
             row.querySelector('.med-status-indicator').className = 'med-status-indicator taken';
+            announceToScreenReader(`Medicamento ${med.name} marcado como tomado`);
           } else {
             row.classList.remove('taken');
             med.status = 'pendente';
             row.querySelector('.med-status-indicator').textContent = 'Pendente';
             row.querySelector('.med-status-indicator').className = 'med-status-indicator pending';
+            announceToScreenReader(`Medicamento ${med.name} desmarcado`);
           }
         });
         
@@ -475,8 +477,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const med = agendaData[date].meds[index];
     if (med.status === 'tomado') {
       med.status = 'pendente';
+      announceToScreenReader(`Medicamento ${med.name} desmarcado`);
     } else {
       med.status = 'tomado';
+      announceToScreenReader(`Medicamento ${med.name} marcado como tomado`);
     }
     
     // Bidirectional sync with Screen 12 (Maria Cleusa) if today
@@ -1004,13 +1008,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const toastSubtitle = document.getElementById('toast-call-subtitle');
 
   function startSimulatedCall(patientId) {
+    let name = '';
     if (patientId === 'caregiver' || patientId === 'marcos') {
+      name = 'Marcos (Cuidador)';
       if (toastAvatar) toastAvatar.textContent = 'MC';
       if (toastTitle) toastTitle.textContent = `Chamando Marcos (Cuidador)...`;
       if (toastSubtitle) toastSubtitle.textContent = `Ligando para contato de emergência`;
     } else {
       const patient = patientsProfileData[patientId];
       if (!patient) return;
+      name = patient.name;
       if (toastAvatar) toastAvatar.textContent = patient.avatar;
       if (toastTitle) toastTitle.textContent = `Chamando ${patient.name}...`;
       if (toastSubtitle) toastSubtitle.textContent = `Ligando para contato principal`;
@@ -1019,12 +1026,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (toastCall) {
       toastCall.classList.add('active');
     }
+    announceToScreenReader(`Ligação iniciada. Chamando ${name}.`);
   }
 
   function hangupCall() {
     if (toastCall) {
       toastCall.classList.remove('active');
     }
+    announceToScreenReader("Ligação encerrada.");
   }
 
   let pendingCallTarget = null;
@@ -1034,10 +1043,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function openConfirmCallModal(target) {
     pendingCallTarget = target;
+    let name = 'Contato';
+    if (target === 'caregiver' || target === 'marcos') {
+      name = 'Marcos (Cuidador)';
+    } else {
+      const patient = patientsProfileData[target];
+      if (patient) name = patient.name;
+    }
     if (confirmCallModal) {
       confirmCallModal.classList.add('active');
       if (btnConfirmCallCancel) btnConfirmCallCancel.focus();
     }
+    announceToScreenReader(`Confirmação de chamada. Deseja realizar uma ligação para ${name}? Pressione Ligar para confirmar ou Voltar.`);
   }
 
   function closeConfirmCallModal() {
@@ -1045,6 +1062,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (confirmCallModal) {
       confirmCallModal.classList.remove('active');
     }
+    announceToScreenReader("Confirmação cancelada.");
   }
 
   if (btnConfirmCallCancel) {
@@ -1098,19 +1116,76 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // WAI-ARIA Live Announcer Helper Function
+  function announceToScreenReader(message) {
+    const announcer = document.getElementById('app-live-announcer');
+    if (!announcer) return;
+    announcer.textContent = ''; // Reset
+    setTimeout(() => {
+      announcer.textContent = message;
+    }, 50);
+  }
+
   // High Contrast Accessibility Mode Switcher (Screen 15 Settings)
-  const contrastToggle = document.querySelector('#screen-patient-settings .setting-item');
+  const contrastToggle = document.getElementById('setting-high-contrast');
   if (contrastToggle) {
-    contrastToggle.addEventListener('click', () => {
+    const toggleHighContrast = () => {
       const pill = contrastToggle.querySelector('div[style*="position: relative"]');
       const thumb = pill.querySelector('div');
       const isHighContrast = document.body.classList.toggle('high-contrast');
       if (isHighContrast) {
         pill.style.backgroundColor = 'var(--color-primary)';
         thumb.style.left = '22px';
+        announceToScreenReader("Contraste alto ativado");
       } else {
         pill.style.backgroundColor = 'var(--color-border)';
         thumb.style.left = '2px';
+        announceToScreenReader("Contraste alto desativado");
+      }
+    };
+
+    contrastToggle.addEventListener('click', toggleHighContrast);
+    contrastToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleHighContrast();
+      }
+    });
+  }
+
+  // Font Size Accessibility Selector (Screen 15 Settings)
+  const fontSizeToggle = document.getElementById('setting-font-size');
+  const fontSizeStatusText = document.getElementById('font-size-status');
+  if (fontSizeToggle && fontSizeStatusText) {
+    const fontSizeClasses = ['font-small', 'font-medium', 'font-large', 'font-xlarge'];
+    const fontSizeLabels = ['Pequeno', 'Médio', 'Grande', 'Muito Grande'];
+    
+    // Default size is 'Médio' (index 1)
+    let activeSizeIndex = 1;
+    
+    const cycleFontSize = () => {
+      activeSizeIndex = (activeSizeIndex + 1) % fontSizeClasses.length;
+      
+      // Reset classes
+      fontSizeClasses.forEach(cls => document.body.classList.remove(cls));
+      
+      // Set new class
+      const newClass = fontSizeClasses[activeSizeIndex];
+      const newLabel = fontSizeLabels[activeSizeIndex];
+      
+      if (newClass !== 'font-medium') {
+        document.body.classList.add(newClass);
+      }
+      
+      fontSizeStatusText.textContent = newLabel;
+      announceToScreenReader(`Tamanho de letra ajustado para ${newLabel}`);
+    };
+
+    fontSizeToggle.addEventListener('click', cycleFontSize);
+    fontSizeToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        cycleFontSize();
       }
     });
   }

@@ -5,7 +5,9 @@ All notable changes and design iterations for the LembreMed interactive prototyp
 ---
 
 ## [1.4.0] - 2026-05-21
+
 ### Added
+
 - **Role-Based Experience Reorganization**: Fully separated the prototype into two isolated and targeted user flows without splitting the codebase:
   - **Patient Experience**: Screens 12 (Início/Checklist), 6 (Paciente Agenda), 13 (Meus Remédios), 14 (Meus Alertas), and 15 (Paciente Ajustes).
   - **Caregiver Experience**: Screens 7 (Painel do Cuidador), 11 (Perfil do Paciente), 8 (Agenda do Paciente), 9 (Central de Alertas), and 10 (Configurações).
@@ -18,7 +20,9 @@ All notable changes and design iterations for the LembreMed interactive prototyp
 ---
 
 ## [1.3.0] - 2026-05-20
+
 ### Added
+
 - **New Detailed Patient Profile Screen (Screen 11)**: Includes Demographics, SVG Circular Adherence Ring, Medication Checklist, History alerts, Caregiver notes bubble log, and simulated voice calling.
 - **Interactive Alerts Feed (Screen 9)**: Bold, underlined, accessible patient names with custom keyboard support (`tabindex="0"`, Enter/Space) and custom hover chevrons routing directly to Screen 11.
 - **Interactive Notes Logger**: Caregivers can submit a note dynamically, appending it to the clinical history bubble feed.
@@ -26,18 +30,24 @@ All notable changes and design iterations for the LembreMed interactive prototyp
 ---
 
 ## [1.2.0] - 2026-05-19
+
 ### Added
+
 - **Interactive Agenda Screen (Screen 6)**: Implemented 7-day horizontal calendar strip indicating completion (`✓`), pending (`◷`), and missed (`✗`) doses.
 - **Weekly Adherence Metric Card**: Integrated circular SVG progress ring updating adherence metrics dynamically as checklists change.
 
 ---
 
 ## [1.1.0] - 2026-05-18
+
 ### Added
+
 - **Baseline Navigation Correction**: Split the caregiver navigation logic. Introduced a dedicated **Configurações (Screen 10)** settings view, separating it completely from patient agendas.
 
 ---
 
 ## [1.0.0] - 2026-05-17
+
 ### Added
+
 - **Pixel-Perfect Figma Replication**: Translated visual screens into modular HTML/CSS/JS, establishing the foundation layout, Outfit typography scale, color tokens, and custom SVG assets.
