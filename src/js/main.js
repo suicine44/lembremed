@@ -5,56 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const appScreens = document.querySelectorAll('.app-screen');
   
   // ==========================================================================
-  // APP STATE & REFERENCE DATA (MODO PITCH VS MODO REFERÊNCIA)
+  // APP STATE & INTERACTIVE DEMO (PITCH MODE)
   // ==========================================================================
   
-  const referencePatientsData = {
-    'cleusa': {
-      avatar: 'MC',
-      name: 'Maria Cleusa',
-      age: '78 anos • Histórico estável',
-      status: 'Em Dia',
-      statusClass: 'taken',
-      adherence: 94,
-      meds: [
-        { name: 'Losartana Potássica', dose: '50mg • 1 comprimido', time: '08:00', status: 'tomado' },
-        { name: 'Dipirona Sódica', dose: '500mg • 1 comprimido', time: '12:00', status: 'pendente' },
-        { name: 'Insulina NPH', dose: '10 UI • Injeção subcutânea', time: '18:00', status: 'pendente' },
-        { name: 'Metformina 850mg', dose: '1 comprimido', time: '22:00', status: 'pendente' }
-      ],
-      alerts: [
-        { type: 'warning', text: 'Não confirmou o uso do Losartana das 08:00.' },
-        { type: 'success', text: 'Consulta com cardiologista agendada com sucesso para 25/05.' }
-      ],
-      notes: [
-        { author: 'Você (Cuidador)', time: 'Ontem', text: 'Dona Maria apresentou excelente disposição. Alimentou-se muito bem.' },
-        { author: 'Você (Cuidador)', time: '2 dias atrás', text: 'Todos os medicamentos administrados perfeitamente nos horários corretos.' }
-      ]
-    },
-    'pedro': {
-      avatar: 'PF',
-      name: 'Pedro Francisco',
-      age: '82 anos • Histórico instável',
-      status: 'Atrasado',
-      statusClass: 'atrasado',
-      adherence: 72,
-      meds: [
-        { name: 'Metformina 850mg', dose: '1 comprimido', time: '20:00', status: 'tomado' },
-        { name: 'Anlodipino 5mg', dose: '1 comprimido', time: '08:00', status: 'atrasado' },
-        { name: 'Atenolol 25mg', dose: '1 comprimido', time: '08:00', status: 'atrasado' }
-      ],
-      alerts: [
-        { type: 'danger', text: 'Está com 2 medicamentos atrasados.' },
-        { type: 'info', text: 'Próxima receita médica vence em 02 dias.' }
-      ],
-      notes: [
-        { author: 'Você (Cuidador)', time: 'Ontem', text: 'Pedro queixou-se de leve dor de cabeça à tarde. Administrado Dipirona conforme SOS.' }
-      ]
-    }
-  };
-
   const appState = {
-    mode: 'pitch', // 'pitch' ou 'reference'
+    mode: 'pitch',
     user: {
       name: '',
       role: '' // 'patient' ou 'caregiver'
@@ -77,46 +32,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if(genderSelect) genderSelect.value = '';
     if(phoneInput) phoneInput.value = '';
     
+    const searchInputMock = document.getElementById('search-med-input');
+    if (searchInputMock) searchInputMock.value = '';
+    const dropdownResultsMock = document.querySelector('.dropdown-results');
+    if (dropdownResultsMock) dropdownResultsMock.style.display = 'none';
+    
     activePatientId = null;
     
     if (typeof initAgendaData === 'function') {
       initAgendaData();
     }
-  }
-
-  function seedReferenceData() {
-    appState.user = { name: 'Apresentador (Ref)', role: 'caregiver' };
-    appState.patients = JSON.parse(JSON.stringify(referencePatientsData));
-    patientsProfileData = appState.patients;
-    activePatientId = 'cleusa';
-    
-    if (typeof initAgendaData === 'function') {
-      initAgendaData();
+    if (typeof renderAgenda === 'function') {
+      renderAgenda();
     }
-  }
-
-  // Data Mode Toggle Logic
-  const dataModeTabs = document.querySelectorAll('#data-mode-switcher .role-switcher-tab');
-  if (dataModeTabs) {
-    dataModeTabs.forEach(tab => {
-      tab.addEventListener('click', (e) => {
-        dataModeTabs.forEach(t => t.classList.remove('active'));
-        e.currentTarget.classList.add('active');
-        const mode = e.currentTarget.getAttribute('data-mode');
-        
-        if (mode === 'pitch') {
-          appState.mode = 'pitch';
-          clearPitchData();
-          showScreen('screen-1');
-          if (typeof announceToScreenReader === 'function') announceToScreenReader('Modo Pitch ativado. O simulador foi limpo.');
-        } else if (mode === 'reference') {
-          appState.mode = 'reference';
-          seedReferenceData();
-          showScreen('screen-1');
-          if (typeof announceToScreenReader === 'function') announceToScreenReader('Modo Referência ativado. Dados carregados.');
-        }
-      });
-    });
   }
 
   // (Modo Pitch será inicializado ao final do script para evitar problemas de Temporal Dead Zone)
@@ -605,12 +533,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       const dayData = agendaData[dateStr];
-      if (dayData) {
-        const iconWrapper = dayElement.querySelector('.day-status-icon');
-        if (iconWrapper) {
+      const iconWrapper = dayElement.querySelector('.day-status-icon');
+      if (iconWrapper) {
+        if (dayData && dayData.meds && dayData.meds.length > 0) {
           const total = dayData.meds.length;
           const taken = dayData.meds.filter(m => m.status === 'tomado').length;
           const delayed = dayData.meds.filter(m => m.status === 'atrasado').length;
+          
+          // Clear custom styles
+          iconWrapper.style.backgroundColor = '';
+          iconWrapper.style.border = '';
+          iconWrapper.style.boxShadow = '';
           
           iconWrapper.className = 'day-status-icon';
           
@@ -627,27 +560,38 @@ document.addEventListener('DOMContentLoaded', () => {
             iconWrapper.textContent = '◷';
             iconWrapper.title = 'Pendente';
           }
+        } else {
+          // No medications or empty day (for pitch simulation)
+          iconWrapper.className = 'day-status-icon';
+          iconWrapper.style.backgroundColor = 'transparent';
+          iconWrapper.style.border = '1px dashed var(--color-text-light)';
+          iconWrapper.style.boxShadow = 'none';
+          iconWrapper.textContent = '·';
+          iconWrapper.title = 'Sem medicamentos';
         }
       }
     });
   }
 
   function updateWeeklyAdherence() {
-    const dates = Object.keys(agendaData);
+    const calendarDays = document.querySelectorAll('.calendar-day');
     let completedDaysCount = 0;
     let totalMedsAllDays = 0;
     let takenMedsAllDays = 0;
     
-    dates.forEach(d => {
-      const dayMeds = agendaData[d].meds;
-      const total = dayMeds.length;
-      const taken = dayMeds.filter(m => m.status === 'tomado').length;
-      
-      totalMedsAllDays += total;
-      takenMedsAllDays += taken;
-      
-      if (taken === total) {
-        completedDaysCount++;
+    calendarDays.forEach(dayElement => {
+      const dateStr = dayElement.getAttribute('data-date');
+      const dayData = agendaData[dateStr];
+      if (dayData && dayData.meds && dayData.meds.length > 0) {
+        const total = dayData.meds.length;
+        const taken = dayData.meds.filter(m => m.status === 'tomado').length;
+        
+        totalMedsAllDays += total;
+        takenMedsAllDays += taken;
+        
+        if (taken === total) {
+          completedDaysCount++;
+        }
       }
     });
     
@@ -1081,6 +1025,23 @@ document.addEventListener('DOMContentLoaded', () => {
         // Salva no estado
         appState.user.role = role;
         
+        // Inicializa o perfil do paciente principal se o perfil escolhido for Paciente,
+        // garantindo o funcionamento dinâmico perfeito de todas as visões do paciente no Pitch.
+        if (role === 'patient') {
+          const userName = appState.user.name || 'Paciente';
+          appState.patients['cleusa'] = {
+            avatar: userName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'PA',
+            name: userName,
+            age: 'Idade não informada',
+            status: 'Em Dia',
+            statusClass: 'taken',
+            adherence: 100,
+            meds: [],
+            alerts: [],
+            notes: []
+          };
+        }
+        
         setSidebarSwitcherRole(role, true); // Sync sidebar role selector, but prevent redirecting yet
       }
       showScreen('screen-3');
@@ -1176,16 +1137,58 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Screen 5: Medicine search dropdown interactive selection
   const searchDropdownItems = document.querySelectorAll('.dropdown-item');
   const searchInput = document.getElementById('search-med-input');
+  const dropdownResults = document.querySelector('.dropdown-results');
   
-  searchDropdownItems.forEach(item => {
-    item.addEventListener('click', () => {
-      searchDropdownItems.forEach(i => i.classList.remove('selected'));
-      item.classList.add('selected');
+  if (searchInput && dropdownResults) {
+    const showDropdown = () => {
+      dropdownResults.style.display = 'block';
+      filterResults();
+    };
+    
+    searchInput.addEventListener('focus', showDropdown);
+    searchInput.addEventListener('click', showDropdown);
+    
+    const filterResults = () => {
+      const query = searchInput.value.toLowerCase().trim();
+      let visibleCount = 0;
       
-      const medName = item.getAttribute('data-med');
-      searchInput.value = medName;
+      searchDropdownItems.forEach(item => {
+        const medName = (item.getAttribute('data-med') || '').toLowerCase();
+        if (medName.includes(query)) {
+          item.style.display = 'flex';
+          visibleCount++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+      
+      if (visibleCount === 0) {
+        dropdownResults.style.display = 'none';
+      } else {
+        dropdownResults.style.display = 'block';
+      }
+    };
+    
+    searchInput.addEventListener('input', filterResults);
+    
+    searchDropdownItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        searchDropdownItems.forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        
+        const medName = item.getAttribute('data-med');
+        searchInput.value = medName;
+        dropdownResults.style.display = 'none';
+      });
     });
-  });
+    
+    document.addEventListener('click', (e) => {
+      if (!searchInput.contains(e.target) && !dropdownResults.contains(e.target)) {
+        dropdownResults.style.display = 'none';
+      }
+    });
+  }
 
   // 5. Screen 7: Caregiver Dashboard Patient Card interactions (Safeguards for static buttons)
   const btnPatientCleusa = document.getElementById('btn-patient-cleusa');
@@ -1601,7 +1604,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('reg-name').value = '';
     document.getElementById('reg-gender').value = '';
     document.getElementById('reg-phone').value = '';
-    document.getElementById('search-med-input').value = 'Dipirona';
+    
+    const searchInputReset = document.getElementById('search-med-input');
+    if (searchInputReset) searchInputReset.value = '';
+    const dropdownResultsReset = document.querySelector('.dropdown-results');
+    if (dropdownResultsReset) dropdownResultsReset.style.display = 'none';
     
     // Reset selected roles
     roleCards.forEach(c => c.classList.remove('selected'));
