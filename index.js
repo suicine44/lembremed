@@ -314,31 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Floating Simulated Call
-  const toastCall = document.getElementById('phone-toast-call');
-  const toastAvatar = document.getElementById('toast-call-avatar');
-  const toastTitle = document.getElementById('toast-call-title');
-  const toastSubtitle = document.getElementById('toast-call-subtitle');
 
-  function startSimulatedCall(patientId) {
-    const patient = patientsProfileData[patientId];
-    if (!patient) return;
-    
-    if (toastAvatar) toastAvatar.textContent = patient.avatar;
-    if (toastTitle) toastTitle.textContent = `Chamando ${patient.name}...`;
-    if (toastSubtitle) toastSubtitle.textContent = `Ligando para contato principal`;
-
-    if (toastCall) {
-      toastCall.classList.add('active');
-    }
-  }
-
-  function hangupCall() {
-    if (toastCall) {
-      toastCall.classList.remove('active');
-    }
-  }
-  
   // ==========================================================================
   // SCREEN 6 DATABASE & ACCESS-FIRST LOGIC
   // ==========================================================================
@@ -838,6 +814,27 @@ document.addEventListener('DOMContentLoaded', () => {
   // ONBOARDING FLOW ROUTING UPDATES
   // ==========================================================================
   
+  // Phone field masking logic (Cadastro Inicial - Screen 1)
+  const phoneInput = document.getElementById('reg-phone');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', (e) => {
+      let x = e.target.value.replace(/\D/g, '').substring(0, 11);
+      let formatted = '';
+      if (x.length === 0) {
+        formatted = '';
+      } else if (x.length <= 2) {
+        formatted = `(${x}`;
+      } else if (x.length <= 6) {
+        formatted = `(${x.substring(0, 2)}) ${x.substring(2)}`;
+      } else if (x.length <= 10) {
+        formatted = `(${x.substring(0, 2)}) ${x.substring(2, 6)}-${x.substring(6)}`;
+      } else {
+        formatted = `(${x.substring(0, 2)}) ${x.substring(2, 7)}-${x.substring(7)}`;
+      }
+      e.target.value = formatted;
+    });
+  }
+
   // Screen 1 -> Screen 2 (Cadastro -> Role Selection)
   document.getElementById('btn-flow-1').addEventListener('click', () => {
     const name = document.getElementById('reg-name').value.trim();
