@@ -308,63 +308,272 @@
               <div class="screen-header">
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
               </div>
-              <div class="screen-content">
-                <h1 class="welcome-title" style="font-size: 20px; margin-top: 8px; margin-bottom: 16px;">Adicione seus medicamentos</h1>
+              <div class="screen-content" style="display: flex; flex-direction: column; height: 100%;">
                 
-                <div class="search-wrapper">
-                  <!-- Loupe -->
-                  <svg class="search-icon-fixed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="m21 21-4.3-4.3"/>
-                  </svg>
-                  <input type="text" class="form-control search-input-mock" id="search-med-input" placeholder="Pesquisar medicamento...">
-                </div>
-                
-                <div class="dropdown-results" style="display: none;">
-                  <div class="dropdown-item selected" data-med="Dipirona 500mg">
-                    <div class="dropdown-item-icon">
-                      <!-- Pill SVG -->
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="3"/>
-                        <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
-                      </svg>
-                    </div>
-                    <div class="dropdown-item-text">
-                      <h4>Dipirona 500mg</h4>
-                      <p>Comprimido - Uso oral</p>
-                    </div>
+                <!-- Phase 1: Search and Select (med-search-phase) -->
+                <div id="med-search-phase" style="display: flex; flex-direction: column; flex-grow: 1; width: 100%;">
+                  <h1 class="welcome-title" style="font-size: 20px; margin-top: 8px; margin-bottom: 16px;">Adicione seus medicamentos</h1>
+                  
+                  <div class="search-wrapper">
+                    <!-- Loupe -->
+                    <svg class="search-icon-fixed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"/>
+                      <path d="m21 21-4.3-4.3"/>
+                    </svg>
+                    <input type="text" class="form-control search-input-mock" id="search-med-input" placeholder="Pesquisar medicamento...">
                   </div>
                   
-                  <div class="dropdown-item" data-med="Dipirona Gotas">
-                    <div class="dropdown-item-icon">
-                      <!-- Droplet -->
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7Z"/>
-                      </svg>
+                  <div class="dropdown-results" style="display: none;">
+                    <!-- 1. Dipirona 500mg (Padrão) -->
+                    <div class="dropdown-item selected" data-med="Dipirona 500mg">
+                      <div class="dropdown-item-icon">
+                        <!-- Modern Pill SVG -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                          <path d="m8.5 15.5 7-7"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Dipirona 500mg</h4>
+                        <p>Comprimido - Uso oral</p>
+                      </div>
                     </div>
-                    <div class="dropdown-item-text">
-                      <h4>Dipirona Gotas</h4>
-                      <p>Solução Gotas - Uso oral</p>
+                    
+                    <!-- 2. Dipirona Gotas -->
+                    <div class="dropdown-item" data-med="Dipirona Gotas">
+                      <div class="dropdown-item-icon">
+                        <!-- Droplet -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7Z"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Dipirona Gotas</h4>
+                        <p>Solução Gotas - Uso oral</p>
+                      </div>
                     </div>
+                    
+                    <!-- 3. Dipirona Monoidratada -->
+                    <div class="dropdown-item" data-med="Dipirona Monoidratada">
+                      <div class="dropdown-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                          <path d="m8.5 15.5 7-7"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Dipirona Monoidratada</h4>
+                        <p>Comprimido genérico</p>
+                      </div>
+                    </div>
+
+                    <!-- 4. Paracetamol 750mg -->
+                    <div class="dropdown-item" data-med="Paracetamol 750mg">
+                      <div class="dropdown-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                          <path d="m8.5 15.5 7-7"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Paracetamol 750mg</h4>
+                        <p>Comprimido - Uso oral</p>
+                      </div>
+                    </div>
+
+                    <!-- 5. Losartana Potássica 50mg -->
+                    <div class="dropdown-item" data-med="Losartana Potássica 50mg">
+                      <div class="dropdown-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                          <path d="m8.5 15.5 7-7"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Losartana Potássica 50mg</h4>
+                        <p>Comprimido - Uso oral</p>
+                      </div>
+                    </div>
+
+                    <!-- 6. Ibuprofeno 600mg -->
+                    <div class="dropdown-item" data-med="Ibuprofeno 600mg">
+                      <div class="dropdown-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                          <path d="m8.5 15.5 7-7"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Ibuprofeno 600mg</h4>
+                        <p>Comprimido - Uso oral</p>
+                      </div>
+                    </div>
+
+                    <!-- 7. Omeprazol 20mg -->
+                    <div class="dropdown-item" data-med="Omeprazol 20mg">
+                      <div class="dropdown-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                          <path d="m8.5 15.5 7-7"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Omeprazol 20mg</h4>
+                        <p>Cápsula - Uso oral</p>
+                      </div>
+                    </div>
+
+                    <!-- 8. Amoxicilina 500mg -->
+                    <div class="dropdown-item" data-med="Amoxicilina 500mg">
+                      <div class="dropdown-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                          <path d="m8.5 15.5 7-7"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Amoxicilina 500mg</h4>
+                        <p>Cápsula - Uso oral</p>
+                      </div>
+                    </div>
+
+                    <!-- 9. Metformina 850mg -->
+                    <div class="dropdown-item" data-med="Metformina 850mg">
+                      <div class="dropdown-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                          <path d="m8.5 15.5 7-7"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Metformina 850mg</h4>
+                        <p>Comprimido - Uso oral</p>
+                      </div>
+                    </div>
+
+                    <!-- 10. Rivaroxabana 20mg -->
+                    <div class="dropdown-item" data-med="Rivaroxabana 20mg">
+                      <div class="dropdown-item-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                          <path d="m8.5 15.5 7-7"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Rivaroxabana 20mg</h4>
+                        <p>Comprimido - Uso oral</p>
+                      </div>
+                    </div>
+
+                    <!-- 11. Insulina NPH -->
+                    <div class="dropdown-item" data-med="Insulina NPH">
+                      <div class="dropdown-item-icon">
+                        <!-- Syringe SVG -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="m18 2 4 4"/>
+                          <path d="m17 7 3-3"/>
+                          <path d="M19 9 8.7 19.3c-.2.2-.5.3-.7.3H5v-3c0-.3.1-.5.3-.7L15 6"/>
+                          <path d="m9 11 4 4"/>
+                          <path d="m5 19-3 3"/>
+                          <path d="m14 4 6 6"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Insulina NPH</h4>
+                        <p>Injeção subcutânea</p>
+                      </div>
+                    </div>
+
+                    <!-- 12. Nebulização com Berotec -->
+                    <div class="dropdown-item" data-med="Nebulização com Berotec">
+                      <div class="dropdown-item-icon">
+                        <!-- Breathe icon -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12.8 18.2a4 4 0 0 0 3-7.2"/>
+                          <path d="M12.8 21.2a6 6 0 0 0 4.5-10.8"/>
+                          <path d="M12.8 15.2a2 2 0 0 0 1.5-3.6"/>
+                          <path d="M10.2 5.8a4 4 0 0 1-3 7.2"/>
+                          <path d="M10.2 2.8a6 6 0 0 1-4.5 10.8"/>
+                          <path d="M10.2 8.8a2 2 0 0 1-1.5 3.6"/>
+                        </svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Nebulização com Berotec</h4>
+                        <p>Solução para Inalação</p>
+                      </div>
+                    </div>
+
                   </div>
                   
-                  <div class="dropdown-item" data-med="Dipirona Monoidratada">
-                    <div class="dropdown-item-icon">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="3"/>
-                        <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
-                      </svg>
-                    </div>
-                    <div class="dropdown-item-text">
-                      <h4>Dipirona Monoidratada</h4>
-                      <p>Comprimido genérico</p>
-                    </div>
+                  <div style="margin-top: auto; padding-top: 16px;">
+                    <button class="btn-primary" id="btn-flow-5">Continuar</button>
                   </div>
                 </div>
-                
-                <div style="margin-top: auto;">
-                  <button class="btn-primary" id="btn-flow-5">Continuar</button>
+
+                <!-- Phase 2: iOS Time Picker (med-times-phase) - Initially Hidden -->
+                <div id="med-times-phase" style="display: none; flex-direction: column; flex-grow: 1; width: 100%;">
+                  <h1 class="welcome-title" style="font-size: 20px; margin-top: 8px; margin-bottom: 8px;">Definir Horários</h1>
+                  <p style="color: var(--color-text-muted); font-size: 13px; margin-bottom: 16px;">Selecione os horários diários para tomar seu remédio.</p>
+                  
+                  <!-- Selected Medicine Preview Card (Standard Card Pattern) -->
+                  <div class="selected-med-preview-card" style="margin-bottom: 16px; padding: 14px 16px; border: 1px solid var(--color-border); border-left: 6px solid var(--color-primary); border-radius: var(--radius-md); background-color: var(--color-white); display: flex; align-items: center; gap: 14px;">
+                    <div class="selected-med-preview-icon" style="color: var(--color-primary); display: flex; align-items: center;">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                        <path d="m8.5 15.5 7-7"/>
+                      </svg>
+                    </div>
+                    <div class="selected-med-preview-info">
+                      <h4 id="preview-med-name" style="margin: 0; font-size: 16px; font-weight: 800; color: var(--color-text-dark);">Remédio</h4>
+                      <p id="preview-med-dose" style="margin: 3px 0 0 0; font-size: 13px; color: var(--color-text-muted);">Uso oral</p>
+                    </div>
+                  </div>
+
+                  <!-- iOS-Style Double Wheel Time Picker -->
+                  <div class="ios-time-picker-container">
+                    <div style="display: flex; width: 100%; justify-content: space-around; font-size: 11px; font-weight: 800; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 8px;">
+                      <span style="flex: 1; text-align: center;">Hora</span>
+                      <span style="flex: 1; text-align: center;">Minuto</span>
+                    </div>
+                    
+                    <div class="ios-time-picker">
+                      <!-- Highlight Overlay lines in the center -->
+                      <div class="ios-picker-highlight"></div>
+                      
+                      <!-- Hours Column -->
+                      <div class="ios-picker-column" id="picker-hours-column">
+                        <!-- Will be populated dynamically in JS (00 to 23) -->
+                      </div>
+                      
+                      <div style="font-size: 24px; font-weight: 800; color: var(--color-primary); padding: 0 10px; margin-bottom: 4px; pointer-events: none;">:</div>
+                      
+                      <!-- Minutes Column -->
+                      <div class="ios-picker-column" id="picker-minutes-column">
+                        <!-- Will be populated dynamically in JS (00 to 55) -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Button to Add Scrolled Time -->
+                  <button type="button" class="btn-secondary" id="btn-add-selected-time" style="width: 100%; padding: 12px; margin-bottom: 16px; font-weight: 800; font-size: 14px;">
+                    + Adicionar Horário
+                  </button>
+
+                  <!-- List of Selected Times Pill Chips -->
+                  <div style="font-size: 11px; font-weight: 800; color: var(--color-text-muted); text-transform: uppercase; margin-bottom: 6px;">Horários Adicionados:</div>
+                  <div class="selected-times-container" id="selected-times-chips-list">
+                    <!-- Dynamic chips go here -->
+                    <div class="empty-state-text" id="times-empty-state" style="color: var(--color-text-light); font-size: 13px; padding: 4px; text-align: center; width: 100%;">
+                      Nenhum horário adicionado ainda.
+                    </div>
+                  </div>
+
+                  <div style="margin-top: auto; padding-top: 16px; display: flex; gap: 12px; width: 100%;">
+                    <button class="btn-secondary" id="btn-back-to-search" style="flex: 1; padding: 12px; font-weight: 800;">Voltar</button>
+                    <button class="btn-primary" id="btn-confirm-med-times" style="flex: 2; padding: 12px; font-weight: 800;">Confirmar</button>
+                  </div>
                 </div>
+
               </div>
             </div>
             
@@ -508,9 +717,9 @@
                   Agenda
                 </div>
                 <div class="nav-tab" data-nav="patient-meds">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="3"/>
-                    <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                    <path d="m8.5 15.5 7-7"/>
                   </svg>
                   Remédios
                 </div>
@@ -611,9 +820,9 @@
                   <div class="med-row taken" data-med-id="losartana">
                     <div class="med-icon">
                       <!-- Capsule Pill -->
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
-                        <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="2"/>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                        <path d="m8.5 15.5 7-7"/>
                       </svg>
                     </div>
                     <div class="med-info">
@@ -647,9 +856,9 @@
                   <!-- Med 3: Dipirona -->
                   <div class="med-row" data-med-id="dipirona">
                     <div class="med-icon orange">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
-                        <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="2"/>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                        <path d="m8.5 15.5 7-7"/>
                       </svg>
                     </div>
                     <div class="med-info">
@@ -1097,9 +1306,9 @@
                   Agenda
                 </div>
                 <div class="nav-tab" data-nav="patient-meds">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="3"/>
-                    <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                    <path d="m8.5 15.5 7-7"/>
                   </svg>
                   Remédios
                 </div>
@@ -1156,9 +1365,9 @@
                   Agenda
                 </div>
                 <div class="nav-tab active" data-nav="patient-meds">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="3"/>
-                    <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                    <path d="m8.5 15.5 7-7"/>
                   </svg>
                   Remédios
                 </div>
@@ -1236,9 +1445,9 @@
                   Agenda
                 </div>
                 <div class="nav-tab" data-nav="patient-meds">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="3"/>
-                    <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                    <path d="m8.5 15.5 7-7"/>
                   </svg>
                   Remédios
                 </div>
@@ -1328,9 +1537,9 @@
                   Agenda
                 </div>
                 <div class="nav-tab" data-nav="patient-meds">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                    <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="3"/>
-                    <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                    <path d="m8.5 15.5 7-7"/>
                   </svg>
                   Remédios
                 </div>

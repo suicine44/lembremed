@@ -1100,7 +1100,224 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Screen 5 -> Screen 6 (Search Med -> Compliance Agenda)
+  // 4a. iOS-style Time Picker columns and state management
+  const hoursColumn = document.getElementById('picker-hours-column');
+  const minutesColumn = document.getElementById('picker-minutes-column');
+  
+  const pickerHours = [];
+  for (let i = 0; i < 24; i++) {
+    pickerHours.push(i < 10 ? '0' + i : '' + i);
+  }
+  const pickerMinutes = [];
+  for (let i = 0; i < 60; i += 5) {
+    pickerMinutes.push(i < 10 ? '0' + i : '' + i);
+  }
+
+  let selectedHour = '12';
+  let selectedMinute = '00';
+  let addedTimes = []; // Holds selected times, e.g., ["08:00", "20:00"]
+
+  function populatePickerColumns() {
+    if (hoursColumn && hoursColumn.children.length === 0) {
+      // Empty buffer items at top and bottom for snap padding
+      const topBuffer = document.createElement('div');
+      topBuffer.style.height = '60px';
+      hoursColumn.appendChild(topBuffer);
+      
+      pickerHours.forEach(h => {
+        const item = document.createElement('div');
+        item.className = 'ios-picker-item' + (h === '12' ? ' active' : '');
+        item.textContent = h;
+        hoursColumn.appendChild(item);
+      });
+      
+      const bottomBuffer = document.createElement('div');
+      bottomBuffer.style.height = '60px';
+      hoursColumn.appendChild(bottomBuffer);
+      
+      // Scroll snapping
+      setupIosPickerColumn(hoursColumn, pickerHours, (val) => {
+        selectedHour = val;
+      });
+      
+      // Initial scroll to '12'
+      setTimeout(() => {
+        hoursColumn.scrollTop = 12 * 30;
+      }, 100);
+    }
+    
+    if (minutesColumn && minutesColumn.children.length === 0) {
+      const topBuffer = document.createElement('div');
+      topBuffer.style.height = '60px';
+      minutesColumn.appendChild(topBuffer);
+      
+      pickerMinutes.forEach(m => {
+        const item = document.createElement('div');
+        item.className = 'ios-picker-item' + (m === '00' ? ' active' : '');
+        item.textContent = m;
+        minutesColumn.appendChild(item);
+      });
+      
+      const bottomBuffer = document.createElement('div');
+      bottomBuffer.style.height = '60px';
+      minutesColumn.appendChild(bottomBuffer);
+      
+      // Scroll snapping
+      setupIosPickerColumn(minutesColumn, pickerMinutes, (val) => {
+        selectedMinute = val;
+      });
+      
+      // Initial scroll to '00'
+      setTimeout(() => {
+        minutesColumn.scrollTop = 0;
+      }, 100);
+    }
+  }
+
+  function setupIosPickerColumn(columnEl, itemsArray, onValueChange) {
+    columnEl.addEventListener('scroll', () => {
+      const index = Math.round(columnEl.scrollTop / 30);
+      const items = columnEl.querySelectorAll('.ios-picker-item');
+      items.forEach((item, i) => {
+        if (i === index) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+      if (itemsArray[index] !== undefined) {
+        onValueChange(itemsArray[index]);
+      }
+    });
+  }
+
+  const btnAddSelectedTime = document.getElementById('btn-add-selected-time');
+  const selectedTimesChipsList = document.getElementById('selected-times-chips-list');
+  const timesEmptyState = document.getElementById('times-empty-state');
+
+  if (btnAddSelectedTime) {
+    btnAddSelectedTime.addEventListener('click', () => {
+      const timeStr = `${selectedHour}:${selectedMinute}`;
+      if (addedTimes.includes(timeStr)) {
+        return; // Avoid duplicates
+      }
+      addedTimes.push(timeStr);
+      addedTimes.sort(); // Sort chronological
+      renderTimeChips();
+    });
+  }
+
+  function renderTimeChips() {
+    if (!selectedTimesChipsList) return;
+    
+    // Clear all except empty state
+    selectedTimesChipsList.innerHTML = '';
+    
+    if (addedTimes.length === 0) {
+      if (timesEmptyState) {
+        selectedTimesChipsList.appendChild(timesEmptyState);
+      } else {
+        selectedTimesChipsList.innerHTML = `<div class="empty-state-text" id="times-empty-state" style="color: var(--color-text-light); font-size: 13px; padding: 4px; text-align: center; width: 100%;">Nenhum horário adicionado ainda.</div>`;
+      }
+      return;
+    }
+    
+    addedTimes.forEach(timeStr => {
+      const chip = document.createElement('div');
+      chip.className = 'time-chip';
+      chip.innerHTML = `
+        <span>${timeStr}</span>
+        <button type="button" aria-label="Remover horário ${timeStr}">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      `;
+      
+      chip.querySelector('button').addEventListener('click', () => {
+        addedTimes = addedTimes.filter(t => t !== timeStr);
+        renderTimeChips();
+      });
+      
+      selectedTimesChipsList.appendChild(chip);
+    });
+  }
+
+  const btnBackToSearch = document.getElementById('btn-back-to-search');
+  if (btnBackToSearch) {
+    btnBackToSearch.addEventListener('click', () => {
+      const searchPhase = document.getElementById('med-search-phase');
+      const timesPhase = document.getElementById('med-times-phase');
+      if (searchPhase && timesPhase) {
+        timesPhase.style.display = 'none';
+        searchPhase.style.display = 'flex';
+      }
+    });
+  }
+
+  const btnConfirmMedTimes = document.getElementById('btn-confirm-med-times');
+  if (btnConfirmMedTimes) {
+    btnConfirmMedTimes.addEventListener('click', () => {
+      const selectedMedItem = document.querySelector('#screen-5 .dropdown-item.selected');
+      if (!selectedMedItem) return;
+      
+      const medName = selectedMedItem.getAttribute('data-med') || 'Novo Medicamento';
+      const dose = selectedMedItem.querySelector('p') ? selectedMedItem.querySelector('p').textContent : 'Uso oral';
+      
+      // If user hasn't added any times, add the current picker time by default
+      if (addedTimes.length === 0) {
+        addedTimes.push(`${selectedHour}:${selectedMinute}`);
+      }
+      
+      const todayDate = selectedDate || '2026-05-21';
+      if (!agendaData[todayDate]) {
+        agendaData[todayDate] = { dateLabel: 'Hoje, 21 de Maio', meds: [] };
+      }
+      
+      // Register all chosen times to the agenda
+      addedTimes.forEach(timeStr => {
+        agendaData[todayDate].meds.push({
+          name: medName,
+          dose: dose,
+          time: timeStr,
+          status: 'pendente'
+        });
+        
+        // Sync with patient profile (Cleusa)
+        if (appState.patients && appState.patients['cleusa'] && todayDate === '2026-05-21') {
+          appState.patients['cleusa'].meds.push({
+            name: medName,
+            dose: dose,
+            time: timeStr,
+            status: 'pendente'
+          });
+        }
+      });
+      
+      // Sort meds chronologically by time
+      agendaData[todayDate].meds.sort((a, b) => a.time.localeCompare(b.time));
+      if (appState.patients && appState.patients['cleusa'] && todayDate === '2026-05-21') {
+        appState.patients['cleusa'].meds.sort((a, b) => a.time.localeCompare(b.time));
+      }
+      
+      // Reset search and times states
+      addedTimes = [];
+      const searchPhase = document.getElementById('med-search-phase');
+      const timesPhase = document.getElementById('med-times-phase');
+      if (searchPhase && timesPhase) {
+        timesPhase.style.display = 'none';
+        searchPhase.style.display = 'flex';
+      }
+      if (searchInput) searchInput.value = '';
+      
+      renderAgenda();
+      renderPatientHomeChecklist(); // Sync patient dashboard
+      showScreen('screen-6');
+    });
+  }
+
+  // Screen 5 -> Switch to Times Picker phase
   const btnFlow5 = document.getElementById('btn-flow-5');
   if (btnFlow5) {
     btnFlow5.addEventListener('click', () => {
@@ -1109,29 +1326,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const medName = selectedMedItem.getAttribute('data-med') || 'Novo Medicamento';
         const dose = selectedMedItem.querySelector('p') ? selectedMedItem.querySelector('p').textContent : 'Uso oral';
         
-        const todayDate = '2026-05-21';
-        if (!agendaData[todayDate]) {
-          agendaData[todayDate] = { dateLabel: 'Hoje, 21 de Maio', meds: [] };
-        }
+        // Show Phase 2 selected medicine info
+        const previewName = document.getElementById('preview-med-name');
+        const previewDose = document.getElementById('preview-med-dose');
+        if (previewName) previewName.textContent = medName;
+        if (previewDose) previewDose.textContent = dose;
         
-        agendaData[todayDate].meds.push({
-          name: medName,
-          dose: dose,
-          time: '12:00',
-          status: 'pendente'
-        });
+        // Reset added times and display chips
+        addedTimes = [];
+        renderTimeChips();
         
-        // Sincroniza com a dashboard do paciente caso exista (modo Caregiver Pitch)
-        if (appState.patients && appState.patients['cleusa']) {
-          appState.patients['cleusa'].meds.push({
-            name: medName,
-            dose: dose,
-            time: '12:00',
-            status: 'pendente'
-          });
+        // Switch Phase views
+        const searchPhase = document.getElementById('med-search-phase');
+        const timesPhase = document.getElementById('med-times-phase');
+        if (searchPhase && timesPhase) {
+          searchPhase.style.display = 'none';
+          timesPhase.style.display = 'flex';
+          
+          // Populate iOS Time picker columns dynamically
+          populatePickerColumns();
         }
       }
-      showScreen('screen-6');
     });
   }
 
@@ -1639,6 +1854,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchInputReset) searchInputReset.value = '';
     const dropdownResultsReset = document.querySelector('.dropdown-results');
     if (dropdownResultsReset) dropdownResultsReset.style.display = 'none';
+    
+    // Reset search and times states
+    addedTimes = [];
+    const searchPhase = document.getElementById('med-search-phase');
+    const timesPhase = document.getElementById('med-times-phase');
+    if (searchPhase && timesPhase) {
+      timesPhase.style.display = 'none';
+      searchPhase.style.display = 'flex';
+    }
     
     // Reset selected roles
     roleCards.forEach(c => c.classList.remove('selected'));
