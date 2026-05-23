@@ -452,6 +452,32 @@ body.font-xlarge {
   transform: scale(0.98);
 }
 
+.btn-secondary {
+  width: 100%;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-dark);
+  padding: 15px 24px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-border);
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
 /* Text Input Fields */
 .input-group {
   margin-bottom: 16px;
@@ -727,10 +753,41 @@ body.font-xlarge {
 .dropdown-results {
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
   margin-bottom: 24px;
   overflow: hidden;
+}
+
+.selected-med-preview-card {
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.selected-med-preview-icon {
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+}
+
+.selected-med-preview-info h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--color-text-dark);
+}
+
+.selected-med-preview-info p {
+  margin: 3px 0 0 0;
+  font-size: 13px;
+  color: var(--color-text-muted);
 }
 
 .dropdown-item {
@@ -739,8 +796,9 @@ body.font-xlarge {
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
   border-bottom: 1px solid var(--color-bg-secondary);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .dropdown-item:last-child {
@@ -748,6 +806,11 @@ body.font-xlarge {
 }
 
 .dropdown-item:hover, .dropdown-item.selected {
+  background-color: var(--color-primary-light);
+}
+
+.dropdown-item:active {
+  transform: scale(0.98);
   background-color: var(--color-primary-light);
 }
 
@@ -2155,5 +2218,71 @@ body.font-xlarge {
   100% { transform: scale(1); opacity: 1; }
 }
 
+/* ==========================================================================
+   PACIENTE - MEUS REMÉDIOS (SCREEN 13)
+   ========================================================================== */
+.profile-med-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); /* Arredondado harmonioso para o design do app */
+  padding: 14px 16px;
+  background-color: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
 
+.profile-med-item:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 168, 255, 0.4);
+  border-color: var(--color-primary);
+}
 
+.profile-med-item:active {
+  transform: scale(0.98);
+  box-shadow: none;
+  background-color: var(--color-bg-secondary);
+}
+
+.profile-med-item-left {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-med-item-icon {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-primary);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-med-item-info h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+.profile-med-item-info p {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+.profile-med-item-time {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
+}

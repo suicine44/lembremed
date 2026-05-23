@@ -262,18 +262,18 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (med.name.toLowerCase().includes('losartana')) {
           iconHtml = `
             <div class="med-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
-                <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="2"/>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                <path d="m8.5 15.5 7-7"/>
               </svg>
             </div>
           `;
         } else {
           iconHtml = `
             <div class="med-icon orange">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
-                <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="2"/>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+                <path d="m8.5 15.5 7-7"/>
               </svg>
             </div>
           `;
@@ -416,8 +416,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (medListContainer) {
          medListContainer.innerHTML = `
           <div class="empty-state" style="text-align: center; padding: 32px 16px; color: var(--color-text-light);">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 12px; opacity: 0.5;">
-              <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px; opacity: 0.5;">
+              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+              <path d="m8.5 15.5 7-7"/>
             </svg>
             <p>Você ainda não tem medicamentos agendados para este dia.</p>
           </div>
@@ -446,8 +447,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.meds.length === 0) {
         medListContainer.innerHTML = `
           <div class="empty-state" style="text-align: center; padding: 32px 16px; color: var(--color-text-light);">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 12px; opacity: 0.5;">
-              <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px; opacity: 0.5;">
+              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+              <path d="m8.5 15.5 7-7"/>
             </svg>
             <p>Você ainda não tem medicamentos agendados para este dia.</p>
           </div>
@@ -869,8 +871,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (countText) countText.textContent = '0 de 0';
       checklistContainer.innerHTML = `
         <div class="empty-state" style="text-align: center; padding: 32px 16px; color: var(--color-text-light);">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 12px; opacity: 0.5;">
-            <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 12px; opacity: 0.5;">
+            <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+            <path d="m8.5 15.5 7-7"/>
           </svg>
           <p>Você ainda não tem medicamentos agendados para hoje.</p>
         </div>
@@ -902,18 +905,18 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (med.name.toLowerCase().includes('losartana')) {
         iconHtml = `
           <div class="med-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
-              <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="2"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+              <path d="m8.5 15.5 7-7"/>
             </svg>
           </div>
         `;
       } else {
         iconHtml = `
           <div class="med-icon orange">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
-              <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="2"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+              <path d="m8.5 15.5 7-7"/>
             </svg>
           </div>
         `;
@@ -965,29 +968,26 @@ document.addEventListener('DOMContentLoaded', () => {
     patient.meds.forEach(med => {
       const card = document.createElement('div');
       card.className = 'profile-med-item';
-      card.style.border = '1px solid var(--color-border)';
-      card.style.borderRadius = 'var(--radius-md)';
-      card.style.padding = '14px 16px';
-      card.style.backgroundColor = 'var(--color-white)';
-      card.style.display = 'flex';
-      card.style.justifyContent = 'space-between';
-      card.style.alignItems = 'center';
-      card.style.marginBottom = '12px';
+      
+      // Accessibility
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('role', 'button');
+      card.setAttribute('aria-label', `Medicamento ${med.name}, dose ${med.dose}, horário diário às ${med.time}`);
       
       card.innerHTML = `
-        <div style="text-align: left; display: flex; align-items: center; gap: 12px;">
-          <div class="med-icon" style="background-color: var(--color-bg-secondary); color: var(--color-primary); width: 36px; height: 36px; border-radius: var(--radius-pill); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <rect x="3" y="11" width="10" height="10" rx="5" transform="rotate(-45 3 11)"/>
-              <line x1="8" y1="16" x2="16" y2="8" stroke="currentColor" stroke-width="2"/>
+        <div class="profile-med-item-left">
+          <div class="profile-med-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
+              <path d="m8.5 15.5 7-7"/>
             </svg>
           </div>
-          <div>
-            <h4 style="font-size: 14px; font-weight: 700; color: var(--color-text-dark);">${med.name}</h4>
-            <p style="font-size: 11px; color: var(--color-text-muted); margin-top: 2px;">${med.dose} • Diário</p>
+          <div class="profile-med-item-info">
+            <h4>${med.name}</h4>
+            <p>${med.dose} • Diário</p>
           </div>
         </div>
-        <span style="font-size: 13px; font-weight: 700; color: var(--color-primary);">${med.time}</span>
+        <span class="profile-med-item-time">${med.time}</span>
       `;
       container.appendChild(card);
     });
