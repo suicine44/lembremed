@@ -4,9 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LembreMed - Protótipo Visual Interativo</title>
+  <meta name="description" content="LembreMed - Um simulador mobile-first interativo focado na adesão à rotina de medicamentos de idosos, integrado para pacientes e cuidadores.">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://suicine44.github.io/lembremed/">
+  <meta property="og:title" content="LembreMed - Protótipo Visual Interativo">
+  <meta property="og:description" content="Simulador interativo mobile-first para agendamento de remédios e acompanhamento de saúde entre pacientes e cuidadores.">
+  <meta property="og:image" content="assets/brand/logo.svg">
+  
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+  <h1 class="sr-only">LembreMed - Protótipo Visual Interativo</h1>
 
   <div class="dashboard-container">
     
@@ -152,7 +162,7 @@
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
               </div>
               <div class="screen-content">
-                <h1 class="welcome-title">Bem-vindo(a)</h1>
+                <h2 class="welcome-title">Bem-vindo(a)</h2>
                 <p class="welcome-subtitle">Preencha os campos para continuar</p>
                 
                 <div class="input-group">
@@ -265,7 +275,7 @@
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
               </div>
               <div class="screen-content">
-                <h1 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 24px;">Adicione seus medicamentos</h1>
+                <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 24px;">Adicione seus medicamentos</h2>
                 
                 <div class="action-card" id="btn-card-search-med">
                   <div class="action-card-header">
@@ -305,7 +315,7 @@
                 
                 <!-- Phase 1: Search and Select (med-search-phase) -->
                 <div id="med-search-phase" style="display: flex; flex-direction: column; flex-grow: 1; width: 100%;">
-                  <h1 class="welcome-title" style="font-size: 20px; margin-top: 8px; margin-bottom: 16px;">Adicione seus medicamentos</h1>
+                  <h2 class="welcome-title" style="font-size: 20px; margin-top: 8px; margin-bottom: 16px;">Adicione seus medicamentos</h2>
                   
                   <div class="search-wrapper">
                     <!-- Loupe -->
@@ -505,7 +515,7 @@
 
                 <!-- Phase 2: iOS Time Picker (med-times-phase) - Initially Hidden -->
                 <div id="med-times-phase" style="display: none; flex-direction: column; flex-grow: 1; width: 100%;">
-                  <h1 class="welcome-title" style="font-size: 20px; margin-top: 8px; margin-bottom: 8px;">Definir Horários</h1>
+                  <h2 class="welcome-title" style="font-size: 20px; margin-top: 8px; margin-bottom: 8px;">Definir Horários</h2>
                   <p style="color: var(--color-text-muted); font-size: 13px; margin-bottom: 16px;">Selecione os horários diários para tomar seu remédio.</p>
                   
                   <!-- Selected Medicine Preview Card (Standard Card Pattern) -->
@@ -928,7 +938,7 @@
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
-                <h1 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 8px;">Alertas</h1>
+                <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 8px;">Alertas</h2>
                 
                 <div class="info-bubble" style="margin-bottom: 16px; padding: 10px 14px;">
                   Fique atento aos alertas e notificações dos pacientes monitorados.
@@ -1056,7 +1066,7 @@
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
-                <h1 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 16px;">Configurações</h1>
+                <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 16px;">Configurações</h2>
                 
                 <div class="settings-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
                   <div class="setting-item" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
@@ -1312,7 +1322,7 @@
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
-                <h1 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 12px;">Meus Remédios</h1>
+                <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 12px;">Meus Remédios</h2>
                 <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px;">Estes são os medicamentos ativos na sua prescrição atual.</p>
                 
                 <div class="patient-meds-list" id="patient-meds-list-container">
@@ -1371,7 +1381,7 @@
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
-                <h1 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 12px;">Seus Alertas</h1>
+                <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 12px;">Seus Alertas</h2>
                 <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px;">Mensagens e lembretes importantes para você.</p>
                 
                 <div class="alerts-feed" style="margin-bottom: 0;">
@@ -1451,7 +1461,7 @@
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
-                <h1 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 16px;">Configurações</h1>
+                <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 16px;">Configurações</h2>
                 
                 <div class="settings-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;">
                   <!-- High Contrast Toggle (Accessible design) -->
