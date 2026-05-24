@@ -133,19 +133,19 @@
             <span class="status-time" id="phone-time">09:41</span>
             <div class="status-icons">
               <!-- Signal strength icon -->
-              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor">
+              <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true">
                 <rect x="0" y="8" width="3" height="3" rx="0.5"/>
                 <rect x="4" y="6" width="3" height="5" rx="0.5"/>
                 <rect x="8" y="4" width="3" height="7" rx="0.5"/>
                 <rect x="12" y="1" width="3" height="10" rx="0.5"/>
               </svg>
               <!-- Wifi Icon -->
-              <svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+              <svg width="15" height="11" viewBox="0 0 15 11" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" aria-hidden="true">
                 <path d="M1.5 3.5A7.5 7.5 0 0 1 13.5 3.5M3.5 5.5A5 5 0 0 1 11.5 5.5M5.5 7.5A2.5 2.5 0 0 1 9.5 7.5"/>
                 <circle cx="7.5" cy="9.5" r="0.75" fill="currentColor" stroke="none"/>
               </svg>
               <!-- Battery Icon -->
-              <svg width="22" height="11" viewBox="0 0 22 11" fill="currentColor">
+              <svg width="22" height="11" viewBox="0 0 22 11" fill="currentColor" aria-hidden="true">
                 <rect x="0" y="0" width="19" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1"/>
                 <rect x="2" y="2" width="15" height="7" rx="1.5"/>
                 <path d="M20 3.5v4" stroke="currentColor" stroke-linecap="round"/>
@@ -159,7 +159,7 @@
             <!-- SCREEN 1: CADASTRO -->
             <div class="app-screen active" id="screen-1">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content">
                 <h2 class="welcome-title">Bem-vindo(a)</h2>
@@ -167,7 +167,7 @@
                 
                 <div class="input-group">
                   <label for="reg-name">Nome completo <span class="required" aria-hidden="true" style="color: var(--color-danger-text);">*</span></label>
-                  <input type="text" id="reg-name" class="form-control" placeholder="Digite seu nome completo" required aria-required="true" aria-describedby="name-error-msg">
+                  <input type="text" id="reg-name" name="fullname" autocomplete="name" spellcheck="false" class="form-control" placeholder="Digite seu nome completo" required aria-required="true" aria-describedby="name-error-msg">
                   <span id="name-error-msg" class="error-text" role="alert" style="display: none;">
                     <span class="sr-only">Erro:</span> O preenchimento do nome completo é obrigatório para configurar o seu painel de medicamentos.
                   </span>
@@ -185,7 +185,7 @@
                 
                 <div class="input-group" style="margin-bottom: 32px;">
                   <label for="reg-phone">Celular / Telefone</label>
-                  <input type="text" id="reg-phone" class="form-control" placeholder="(00) 00000-0000">
+                  <input type="tel" id="reg-phone" name="phone" autocomplete="tel" inputmode="numeric" spellcheck="false" class="form-control" placeholder="(00) 00000-0000">
                 </div>
                 
                 <div style="margin-top: auto;">
@@ -197,7 +197,7 @@
             <!-- SCREEN 2: SELECAO DE PERFIL -->
             <div class="app-screen" id="screen-2">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content">
                 <div class="role-cards-container" style="margin-top: 16px;" role="radiogroup" aria-label="Escolha seu perfil no aplicativo">
@@ -246,7 +246,7 @@
             <!-- SCREEN 3: ONBOARDING INTRO -->
             <div class="app-screen" id="screen-3">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content">
                 <div class="onboarding-intro-container">
@@ -272,7 +272,7 @@
             <!-- SCREEN 4: ADD MEDICATION WELCOME -->
             <div class="app-screen" id="screen-4">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content">
                 <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 24px;">Adicione seus medicamentos</h2>
@@ -309,7 +309,7 @@
             <!-- SCREEN 5: MEDICINE SEARCH -->
             <div class="app-screen" id="screen-5">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="display: flex; flex-direction: column; height: 100%;">
                 
@@ -323,7 +323,7 @@
                       <circle cx="11" cy="11" r="8"/>
                       <path d="m21 21-4.3-4.3"/>
                     </svg>
-                    <input type="text" class="form-control search-input-mock" id="search-med-input" placeholder="Pesquisar medicamento...">
+                    <input type="text" class="form-control search-input-mock" id="search-med-input" placeholder="Pesquisar medicamento…" aria-label="Pesquisar medicamento" autocomplete="off" name="medsearch">
                   </div>
                   
                   <div class="dropdown-results" style="display: none;">
@@ -583,7 +583,7 @@
             <!-- SCREEN 6: AGENDA & HISTORICO -->
             <div class="app-screen" id="screen-6">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 80px;">
                 <h2 class="agenda-title">AGENDA</h2>
@@ -745,7 +745,7 @@
             <!-- SCREEN 7: PAINEL DO CUIDADOR -->
             <div class="app-screen" id="screen-7">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
                 <div class="section-title-bar" style="margin-top: 8px;">
@@ -799,7 +799,7 @@
             <!-- SCREEN 8: AGENDA DO PACIENTE -->
             <div class="app-screen" id="screen-8">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
                 <div class="patient-profile-header">
@@ -935,7 +935,7 @@
             <!-- SCREEN 9: CENTRAL DE ALERTAS -->
             <div class="app-screen" id="screen-9">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
                 <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 8px;">Alertas</h2>
@@ -1063,7 +1063,7 @@
             <!-- SCREEN 10: CONFIGURAÇÕES -->
             <div class="app-screen" id="screen-10">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
                 <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 16px;">Configurações</h2>
@@ -1255,7 +1255,7 @@
             <!-- SCREEN 12: PACIENTE - INÍCIO -->
             <div class="app-screen" id="screen-patient-home">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
                 <div class="patient-welcome-card">
@@ -1319,7 +1319,7 @@
             <!-- SCREEN 13: PACIENTE - MEUS REMÉDIOS -->
             <div class="app-screen" id="screen-patient-meds">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
                 <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 12px;">Meus Remédios</h2>
@@ -1378,7 +1378,7 @@
             <!-- SCREEN 14: PACIENTE - MEUS ALERTAS -->
             <div class="app-screen" id="screen-patient-alerts">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
                 <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 12px;">Seus Alertas</h2>
@@ -1458,7 +1458,7 @@
             <!-- SCREEN 15: PACIENTE - AJUSTES -->
             <div class="app-screen" id="screen-patient-settings">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img"></div>
+                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
                 <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 16px;">Configurações</h2>

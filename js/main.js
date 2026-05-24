@@ -1521,14 +1521,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (patientId === 'caregiver' || patientId === 'marcos') {
       name = 'Marcos (Cuidador)';
       if (toastAvatar) toastAvatar.textContent = 'MC';
-      if (toastTitle) toastTitle.textContent = `Chamando Marcos (Cuidador)...`;
+      if (toastTitle) toastTitle.textContent = `Chamando Marcos (Cuidador)…`;
       if (toastSubtitle) toastSubtitle.textContent = `Ligando para contato de emergência`;
     } else {
       const patient = patientsProfileData[patientId];
       if (!patient) return;
       name = patient.name;
       if (toastAvatar) toastAvatar.textContent = patient.avatar;
-      if (toastTitle) toastTitle.textContent = `Chamando ${patient.name}...`;
+      if (toastTitle) toastTitle.textContent = `Chamando ${patient.name}…`;
       if (toastSubtitle) toastSubtitle.textContent = `Ligando para contato principal`;
     }
     
