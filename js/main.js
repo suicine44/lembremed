@@ -1,5 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
   
+  // Onboarding custom slides data
+  const onboardingSlides = {
+    patient: [
+      {
+        bg: "var(--color-primary)",
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" fill="var(--color-primary)" stroke="var(--color-white)" stroke-width="1.5"/>
+          <path d="M6 9h2.5l1.5-3 2 6 1.5-4 1.5 2H18" stroke="var(--color-white)" stroke-width="2.5"/>
+        </svg>`,
+        text: "Cuidar da sua rotina de remédios é cuidar da sua saúde."
+      },
+      {
+        bg: "linear-gradient(135deg, #10B981, #059669)",
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="var(--color-white)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+        </svg>`,
+        text: "Receba lembretes na hora certa para nunca esquecer seus medicamentos."
+      },
+      {
+        bg: "linear-gradient(135deg, #F59E0B, #D97706)",
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="var(--color-white)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>`,
+        text: "Conecte-se com cuidadores para um acompanhamento mais seguro e completo."
+      }
+    ],
+    caregiver: [
+      {
+        bg: "var(--color-primary)",
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="var(--color-white)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>`,
+        text: "Acompanhar a rotina dos seus familiares ficou muito mais simples."
+      },
+      {
+        bg: "linear-gradient(135deg, #10B981, #059669)",
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="var(--color-white)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>`,
+        text: "Receba alertas em tempo real se seu familiar atrasar a medicação."
+      },
+      {
+        bg: "linear-gradient(135deg, #F59E0B, #D97706)",
+        icon: `<svg viewBox="0 0 24 24" fill="none" stroke="var(--color-white)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="9" y1="3" x2="9" y2="21"/>
+          <line x1="15" y1="3" x2="15" y2="21"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="3" y1="15" x2="21" y2="15"/>
+        </svg>`,
+        text: "Gerencie múltiplos pacientes em um único painel e garanta o cuidado completo."
+      }
+    ]
+  };
+
+  // Helper to display consistent patient age
+  function formatAgeText(age) {
+    if (!age || age.toString().trim() === '' || age.toString().toLowerCase().includes('não informada')) {
+      return 'Idade não informada';
+    }
+    const cleanAge = age.toString().replace(/\D/g, '');
+    if (!cleanAge) {
+      if (age.toString().includes('anos')) return age;
+      return age;
+    }
+    return `${cleanAge} anos`;
+  }
+
   // Navigation elements
   const sidebarButtons = document.querySelectorAll('.screen-btn');
   const appScreens = document.querySelectorAll('.app-screen');
@@ -65,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (avatar) avatar.textContent = patient.avatar;
     if (name) name.textContent = patient.name;
-    if (age) age.textContent = patient.age;
+    if (age) age.textContent = formatAgeText(patient.age);
 
     if (statusBadge) {
       statusBadge.textContent = patient.status;
@@ -238,7 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const s8AgeMeta = document.querySelector('#screen-8 .patient-profile-details p');
     if (s8Avatar) s8Avatar.textContent = patient.avatar;
     if (s8Name) s8Name.textContent = patient.name;
-    if (s8AgeMeta) s8AgeMeta.textContent = patient.age;
+    if (s8AgeMeta) s8AgeMeta.textContent = formatAgeText(patient.age);
 
     // Render corresponding checklist
     const checklistContainer = document.getElementById('patient-meds-checklist');
@@ -802,7 +877,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="patient-avatar" style="${!isTaken ? 'background-color: #E2E8F0;' : ''}">${patient.avatar}</div>
         <div class="patient-info">
           <h4>${patient.name}</h4>
-          <p>${patient.age}</p>
+          <p>${formatAgeText(patient.age)}</p>
         </div>
         <span class="patient-status-badge ${patient.statusClass || 'pending'}" ${!isTaken ? 'style="background-color: var(--color-danger-bg); color: var(--color-danger-text);"' : ''}>${statusText}</span>
       `;
@@ -997,25 +1072,32 @@ document.addEventListener('DOMContentLoaded', () => {
   // ONBOARDING FLOW ROUTING UPDATES
   // ==========================================================================
   
-  // Phone field masking logic (Cadastro Inicial - Screen 1)
-  const phoneInput = document.getElementById('reg-phone');
-  if (phoneInput) {
-    phoneInput.addEventListener('input', (e) => {
-      let x = e.target.value.replace(/\D/g, '').substring(0, 11);
-      let formatted = '';
-      if (x.length === 0) {
-        formatted = '';
-      } else if (x.length <= 2) {
-        formatted = `(${x}`;
-      } else if (x.length <= 6) {
-        formatted = `(${x.substring(0, 2)}) ${x.substring(2)}`;
-      } else if (x.length <= 10) {
-        formatted = `(${x.substring(0, 2)}) ${x.substring(2, 6)}-${x.substring(6)}`;
-      } else {
-        formatted = `(${x.substring(0, 2)}) ${x.substring(2, 7)}-${x.substring(7)}`;
-      }
-      e.target.value = formatted;
-    });
+  // Phone field masking logic (Cadastro Inicial & Cadastro de Paciente)
+  const maskPhoneInput = (e) => {
+    let x = e.target.value.replace(/\D/g, '').substring(0, 11);
+    let formatted = '';
+    if (x.length === 0) {
+      formatted = '';
+    } else if (x.length <= 2) {
+      formatted = `(${x}`;
+    } else if (x.length <= 6) {
+      formatted = `(${x.substring(0, 2)}) ${x.substring(2)}`;
+    } else if (x.length <= 10) {
+      formatted = `(${x.substring(0, 2)}) ${x.substring(2, 6)}-${x.substring(6)}`;
+    } else {
+      formatted = `(${x.substring(0, 2)}) ${x.substring(2, 7)}-${x.substring(7)}`;
+    }
+    e.target.value = formatted;
+  };
+
+  const regPhone = document.getElementById('reg-phone');
+  if (regPhone) {
+    regPhone.addEventListener('input', maskPhoneInput);
+  }
+
+  const addPatientPhone = document.getElementById('add-patient-phone');
+  if (addPatientPhone) {
+    addPatientPhone.addEventListener('input', maskPhoneInput);
   }
 
   // Screen 1 -> Screen 2 (Cadastro -> Role Selection)
@@ -1070,6 +1152,9 @@ document.addEventListener('DOMContentLoaded', () => {
             alerts: [],
             notes: []
           };
+        } else {
+          appState.patients = {};
+          patientsProfileData = appState.patients;
         }
         
         setSidebarSwitcherRole(role, true); // Sync sidebar role selector, but prevent redirecting yet
@@ -1951,6 +2036,438 @@ document.addEventListener('DOMContentLoaded', () => {
   initAgendaData();
   setupCalendarClickListeners();
   renderAgenda();
+
+  // ==========================================================================
+  // NEW FEATURES IMPLEMENTATION
+  // ==========================================================================
+
+  // 1. ADD PATIENT ROUTING AND LOGIC
+  const btnAddPatientNav = document.getElementById('btn-add-patient-nav');
+  const btnAddPatientBack = document.getElementById('btn-add-patient-back');
+  const btnSavePatient = document.getElementById('btn-save-patient');
+
+  if (btnAddPatientNav) {
+    btnAddPatientNav.addEventListener('click', () => showScreen('screen-add-patient'));
+  }
+  if (btnAddPatientBack) {
+    btnAddPatientBack.addEventListener('click', () => showScreen('screen-7'));
+  }
+  if (btnSavePatient) {
+    btnSavePatient.addEventListener('click', () => {
+      const nameInput = document.getElementById('add-patient-name');
+      const errorMsg = document.getElementById('add-patient-name-error');
+      const nameVal = nameInput.value.trim();
+
+      if (!nameVal) {
+        nameInput.classList.add('error-state');
+        errorMsg.style.display = 'block';
+        return;
+      }
+      nameInput.classList.remove('error-state');
+      errorMsg.style.display = 'none';
+
+      const ageInput = document.getElementById('add-patient-age');
+      const ageErrorMsg = document.getElementById('add-patient-age-error');
+      const ageRawVal = ageInput.value.trim();
+      
+      let ageValText = 'Idade não informada';
+      if (ageRawVal) {
+        const cleanAgeStr = ageRawVal.replace(/\D/g, '');
+        const parsedAge = cleanAgeStr ? parseInt(cleanAgeStr, 10) : NaN;
+        
+        if (isNaN(parsedAge) || parsedAge < 0 || parsedAge > 130) {
+          ageInput.classList.add('error-state');
+          if (ageErrorMsg) ageErrorMsg.style.display = 'block';
+          ageInput.focus();
+          return;
+        }
+        ageValText = `${parsedAge} anos`;
+      }
+      
+      if (ageErrorMsg) ageErrorMsg.style.display = 'none';
+      ageInput.classList.remove('error-state');
+
+      const mockId = 'patient_' + Date.now();
+      
+      appState.patients[mockId] = {
+        avatar: nameVal.substring(0, 2).toUpperCase(),
+        name: nameVal,
+        age: ageValText,
+        status: 'Em Dia',
+        statusClass: 'taken',
+        adherence: 100,
+        meds: [],
+        alerts: [],
+        notes: []
+      };
+      
+      // Limpa os campos
+      nameInput.value = '';
+      document.getElementById('add-patient-age').value = '';
+      document.getElementById('add-patient-phone').value = '';
+
+      renderCaregiverDashboard();
+      showScreen('screen-7');
+    });
+  }
+
+  // 2. SETTINGS BUTTONS (CAREGIVER & PATIENT)
+  const cgAccountBtn = document.getElementById('btn-cg-account');
+  const cgNotifBtn = document.getElementById('btn-cg-notifications');
+  const cgAboutBtn = document.getElementById('btn-cg-about');
+  const cgLogoutBtn = document.getElementById('btn-cg-logout');
+
+  const patAboutBtn = document.getElementById('btn-patient-about');
+  const patLogoutBtn = document.getElementById('btn-patient-logout');
+  const aboutModal = document.getElementById('about-modal');
+  const btnAboutClose = document.getElementById('btn-about-close');
+
+  if (cgNotifBtn) {
+    cgNotifBtn.addEventListener('click', () => {
+      const statusText = document.getElementById('cg-notif-status');
+      if (statusText.textContent === 'Ativadas') {
+        statusText.textContent = 'Desativadas';
+        statusText.style.color = 'var(--color-text-muted)';
+      } else {
+        statusText.textContent = 'Ativadas';
+        statusText.style.color = 'var(--color-success-text)';
+      }
+    });
+  }
+
+  const openAbout = () => { if(aboutModal) aboutModal.classList.add('active'); };
+  const closeAbout = () => { if(aboutModal) aboutModal.classList.remove('active'); };
+
+  if (cgAboutBtn) cgAboutBtn.addEventListener('click', openAbout);
+  if (patAboutBtn) patAboutBtn.addEventListener('click', openAbout);
+  if (btnAboutClose) btnAboutClose.addEventListener('click', closeAbout);
+
+  const performLogout = () => {
+    // Reset to screen-1
+    const btnResetSimulator = document.getElementById('btn-reset-simulator');
+    if (btnResetSimulator) btnResetSimulator.click(); 
+    else showScreen('screen-1');
+  };
+
+  if (cgLogoutBtn) cgLogoutBtn.addEventListener('click', performLogout);
+  if (patLogoutBtn) patLogoutBtn.addEventListener('click', performLogout);
+
+
+  // 3. ONBOARDING CAROUSEL
+  const btnFlow3Start = document.getElementById('btn-flow-3');
+  const slides = document.querySelectorAll('.onboarding-slide');
+  const dots = document.querySelectorAll('.onboarding-dots .dot');
+  let currentSlide = 0;
+
+  if (slides.length > 0 && btnFlow3Start) {
+    btnFlow3Start.textContent = "Próximo";
+    
+    // We need to override the existing event listener by cloning or modifying it.
+    // The easiest way is to wrap its behavior.
+    const newBtn = btnFlow3Start.cloneNode(true);
+    btnFlow3Start.parentNode.replaceChild(newBtn, btnFlow3Start);
+    
+    newBtn.addEventListener('click', () => {
+      if (currentSlide < slides.length - 1) {
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        
+        currentSlide++;
+        
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+        
+        if (currentSlide === slides.length - 1) {
+          newBtn.textContent = "Começar";
+        }
+      } else {
+        // Now let it proceed (replicate original behavior)
+        const selectedCard = document.querySelector('.role-card.selected');
+        const isCaregiver = selectedCard && selectedCard.getAttribute('data-role') === 'cuidador';
+        if (isCaregiver) {
+          showScreen('screen-7');
+        } else {
+          showScreen('screen-patient-home');
+        }
+      }
+    });
+  }
+
+
+  // 4. PATIENT ALERTS DYNAMIC RENDERING
+  function renderPatientAlerts() {
+    const feed = document.getElementById('patient-alerts-feed');
+    if (!feed) return;
+    
+    const patient = appState.patients['cleusa'] || patientsProfileData['cleusa'];
+    feed.innerHTML = '';
+    
+    if (!patient || !patient.meds || patient.meds.length === 0) {
+      feed.innerHTML = `
+        <div class="empty-state" style="text-align: center; padding: 32px 16px; color: var(--color-text-light);">
+          <p>Você não tem alertas pendentes.</p>
+        </div>
+      `;
+      return;
+    }
+
+    let hasAlerts = false;
+    
+    // Check for un-taken meds
+    const pendingMeds = patient.meds.filter(m => m.status === 'pendente' || m.status === 'atrasado');
+    if (pendingMeds.length > 0) {
+      hasAlerts = true;
+      feed.innerHTML += `
+        <div class="alert-item danger" style="cursor: default; transform: none; box-shadow: none;">
+          <div class="alert-item-content">
+            <svg class="alert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <octagon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            <div class="alert-item-text">
+              <strong>Atenção:</strong> Você tem ${pendingMeds.length} medicamento(s) pendente(s) hoje.
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Static success note
+    hasAlerts = true;
+    feed.innerHTML += `
+      <div class="alert-item success" style="cursor: default; transform: none; box-shadow: none;">
+        <div class="alert-item-content">
+          <svg class="alert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <div class="alert-item-text">
+            <strong>Tudo certo:</strong> Seu perfil foi configurado corretamente.
+          </div>
+        </div>
+      </div>
+    `;
+    
+    if (!hasAlerts) {
+      feed.innerHTML = `<div class="empty-state" style="text-align: center; padding: 32px 16px; color: var(--color-text-light);"><p>Você não tem alertas.</p></div>`;
+    }
+  }
+  
+  let onboardingInterval = null;
+  function initOnboardingCarousel(role) {
+    const carousel = document.getElementById('onboarding-carousel');
+    const dotsContainer = document.getElementById('onboarding-dots');
+    if (!carousel || !dotsContainer) return;
+    
+    // Clear any previous interval
+    if (onboardingInterval) {
+      clearInterval(onboardingInterval);
+      onboardingInterval = null;
+    }
+    
+    const slidesData = onboardingSlides[role] || onboardingSlides.patient;
+    
+    // Generate slides HTML
+    let slidesHtml = '';
+    slidesData.forEach((slide, idx) => {
+      const activeClass = idx === 0 ? 'active' : '';
+      const styleBg = slide.bg.startsWith('var') ? `background-color: ${slide.bg};` : `background: ${slide.bg};`;
+      slidesHtml += `
+        <div class="onboarding-slide ${activeClass}" data-slide="${idx}">
+          <div class="heart-badge-circle" style="${styleBg}">
+            ${slide.icon}
+          </div>
+          <p class="onboarding-text">${slide.text}</p>
+        </div>
+      `;
+    });
+    carousel.innerHTML = slidesHtml;
+    
+    // Generate dots HTML
+    let dotsHtml = '';
+    slidesData.forEach((_, idx) => {
+      const activeClass = idx === 0 ? 'active' : '';
+      dotsHtml += `<span class="dot ${activeClass}" data-index="${idx}" role="button" aria-label="Ver slide ${idx + 1}" style="cursor: pointer;"></span>`;
+    });
+    dotsContainer.innerHTML = dotsHtml;
+    
+    let currentSlide = 0;
+    const slides = carousel.querySelectorAll('.onboarding-slide');
+    const dots = dotsContainer.querySelectorAll('.dot');
+    
+    function goToSlide(idx) {
+      if (idx < 0 || idx >= slides.length) return;
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      
+      currentSlide = idx;
+      
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+    
+    // Setup dot click listeners
+    dots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+        const idx = parseInt(e.target.getAttribute('data-index'));
+        goToSlide(idx);
+        resetInterval();
+      });
+    });
+    
+    function resetInterval() {
+      if (onboardingInterval) clearInterval(onboardingInterval);
+      onboardingInterval = setInterval(() => {
+        let next = (currentSlide + 1) % slides.length;
+        goToSlide(next);
+      }, 4000);
+    }
+    
+    resetInterval();
+  }
+
+  // Intercept showScreen to trigger logic
+  const originalShowScreen = window.showScreen || showScreen;
+  window.showScreen = showScreen = function(id) {
+    originalShowScreen(id);
+    if (id === 'screen-patient-alerts') {
+      renderPatientAlerts();
+    }
+    if (id === 'screen-patient-home') {
+      triggerSimulatedMedReminder();
+    }
+    if (id === 'screen-3') {
+      initOnboardingCarousel(appState.user.role || 'patient');
+    }
+  };
+
+
+  // 5. MEDICATION REMINDER TOAST
+  let reminderShown = false;
+  function triggerSimulatedMedReminder() {
+    if (reminderShown) return;
+    const toast = document.getElementById('med-reminder-toast');
+    if (!toast) return;
+    
+    // Only show if there is a pending med
+    const patient = appState.patients['cleusa'];
+    if (!patient || !patient.meds) return;
+    
+    const firstPending = patient.meds.find(m => m.status !== 'tomado');
+    if (firstPending) {
+      document.getElementById('med-reminder-body').textContent = `${firstPending.name} — ${firstPending.dose}`;
+      
+      setTimeout(() => {
+        toast.classList.add('active');
+        if (typeof announceToScreenReader === 'function') {
+            announceToScreenReader("Aviso: Hora do medicamento " + firstPending.name);
+        }
+      }, 2000);
+      
+      reminderShown = true;
+    }
+  }
+
+  const btnDismissReminder = document.getElementById('btn-dismiss-reminder');
+  if (btnDismissReminder) {
+    btnDismissReminder.addEventListener('click', () => {
+      document.getElementById('med-reminder-toast').classList.remove('active');
+    });
+  }
+
+
+  // 6. BOTTOM SHEET - EDIT/REMOVE MEDICATION
+  const medBottomSheet = document.getElementById('med-bottom-sheet');
+  const btnCloseBottomSheet = document.getElementById('btn-close-bottom-sheet');
+  const btnRemoveMed = document.getElementById('btn-remove-med');
+  let selectedMedForEdit = null;
+
+  function attachMedClickListener() {
+    const patientMedsContainer = document.getElementById('patient-meds-list-container');
+    if (!patientMedsContainer) return;
+    
+    // Override render function
+    const originalRenderPatientMedsList = window.renderPatientMedsList || renderPatientMedsList;
+    window.renderPatientMedsList = renderPatientMedsList = function() {
+      originalRenderPatientMedsList(); 
+      
+      const cards = patientMedsContainer.querySelectorAll('.profile-med-item');
+      cards.forEach((card, index) => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+          const patient = patientsProfileData['cleusa'];
+          if (patient && patient.meds[index]) {
+            selectedMedForEdit = { index, med: patient.meds[index] };
+            document.getElementById('bottom-sheet-med-name').textContent = patient.meds[index].name;
+            document.getElementById('bottom-sheet-med-dose').textContent = `${patient.meds[index].dose} • ${patient.meds[index].time}`;
+            if (medBottomSheet) medBottomSheet.classList.add('active');
+          }
+        });
+      });
+    };
+    renderPatientMedsList();
+  }
+
+  if (btnCloseBottomSheet) {
+    btnCloseBottomSheet.addEventListener('click', () => {
+      if (medBottomSheet) medBottomSheet.classList.remove('active');
+    });
+  }
+
+  if (btnRemoveMed) {
+    btnRemoveMed.addEventListener('click', () => {
+      if (selectedMedForEdit !== null) {
+        const patient = patientsProfileData['cleusa'];
+        patient.meds.splice(selectedMedForEdit.index, 1);
+        
+        if (appState.patients['cleusa'] && appState.patients['cleusa'].meds) {
+          appState.patients['cleusa'].meds.splice(selectedMedForEdit.index, 1);
+        }
+        
+        const todayDate = selectedDate || '2026-05-21';
+        if (agendaData[todayDate] && agendaData[todayDate].meds) {
+          const nameToRem = selectedMedForEdit.med.name;
+          agendaData[todayDate].meds = agendaData[todayDate].meds.filter(m => m.name !== nameToRem);
+        }
+
+        renderPatientMedsList();
+        renderPatientHomeChecklist();
+        renderAgenda();
+        if (medBottomSheet) medBottomSheet.classList.remove('active');
+        
+        if (typeof announceToScreenReader === 'function') {
+            announceToScreenReader("Medicamento removido com sucesso.");
+        }
+      }
+    });
+  }
+
+  // 7. CAREGIVER ALERTS - SWIPE TO DISMISS
+  const caregiverAlerts = document.querySelectorAll('#screen-9 .alert-item');
+  caregiverAlerts.forEach(alert => {
+    const chevronDiv = alert.querySelector('.alert-item-chevron');
+    if (chevronDiv) {
+      chevronDiv.innerHTML = `
+        <button class="dismiss-alert-btn" aria-label="Descartar alerta" style="background:none; border:none; color: var(--color-text-light); cursor:pointer; padding:4px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      `;
+      
+      const btn = chevronDiv.querySelector('.dismiss-alert-btn');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation(); 
+        alert.style.opacity = '0';
+        alert.style.transform = 'translateX(20px)';
+        setTimeout(() => alert.style.display = 'none', 300);
+      });
+    }
+  });
+
+  setTimeout(attachMedClickListener, 500);
 
   // Initialização padrão no Modo Pitch (Moved here to avoid Temporal Dead Zone errors)
   clearPitchData();
