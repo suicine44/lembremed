@@ -1613,16 +1613,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function startSimulatedCall(patientId) {
     let name = '';
-    if (patientId === 'caregiver' || patientId === 'marcos') {
-      name = 'Marcos (Cuidador)';
-      if (toastAvatar) toastAvatar.textContent = 'MC';
-      if (toastTitle) toastTitle.textContent = `Chamando Marcos (Cuidador)…`;
+    if (patientId === 'caregiver') {
+      name = 'Contato de Emergência';
+      if (toastAvatar) {
+        toastAvatar.textContent = '📞';
+        toastAvatar.style.fontSize = '18px';
+      }
+      if (toastTitle) toastTitle.textContent = `Chamando Contato de Emergência…`;
       if (toastSubtitle) toastSubtitle.textContent = `Ligando para contato de emergência`;
     } else {
       const patient = patientsProfileData[patientId];
       if (!patient) return;
       name = patient.name;
-      if (toastAvatar) toastAvatar.textContent = patient.avatar;
+      if (toastAvatar) {
+        toastAvatar.textContent = patient.avatar;
+        toastAvatar.style.fontSize = ''; // Reset standard size
+      }
       if (toastTitle) toastTitle.textContent = `Chamando ${patient.name}…`;
       if (toastSubtitle) toastSubtitle.textContent = `Ligando para contato principal`;
     }
@@ -1648,8 +1654,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function openConfirmCallModal(target) {
     pendingCallTarget = target;
     let name = 'Contato';
-    if (target === 'caregiver' || target === 'marcos') {
-      name = 'Marcos (Cuidador)';
+    if (target === 'caregiver') {
+      name = 'Contato de Emergência';
     } else {
       const patient = patientsProfileData[target];
       if (patient) name = patient.name;
