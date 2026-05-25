@@ -55,6 +55,23 @@
   --color-text-muted: #1A1A1A;
   --color-text-light: #2D2D2D;
   --color-border: #475569;
+  --color-danger-bg: #FFF1F1;
+  --color-danger-text: #991B1B;
+  --color-danger-border: #991B1B;
+}
+
+/* Ensure 'Sair' buttons are readable and high contrast */
+.phone-device.high-contrast #btn-cg-logout,
+.phone-device.high-contrast #btn-patient-logout {
+  border: 1.5px solid var(--color-danger-border) !important;
+  background-color: var(--color-bg-main) !important;
+}
+
+.phone-device.high-contrast #btn-cg-logout div,
+.phone-device.high-contrast #btn-patient-logout div,
+.phone-device.high-contrast #btn-cg-logout svg,
+.phone-device.high-contrast #btn-patient-logout svg {
+  color: var(--color-danger-text) !important;
 }
 
 /* Reset and Base Styles */
@@ -2290,4 +2307,229 @@ body.font-xlarge {
   font-size: 13px;
   font-weight: 700;
   color: var(--color-primary);
+}
+
+/* ==========================================================================
+   NEW COMPONENTS (IMPLEMENTATION PLAN)
+   ========================================================================== */
+
+/* 1. Onboarding Carousel */
+.onboarding-carousel {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.onboarding-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.onboarding-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.onboarding-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.onboarding-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  transition: all 0.3s ease;
+}
+.onboarding-dots .dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+}
+
+/* 2. Medication Reminder Toast */
+.med-reminder-toast {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  z-index: 1000;
+  transform: translateY(-150%);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+}
+.med-reminder-toast.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+.med-reminder-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.med-reminder-text {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.med-reminder-text strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+.med-reminder-text span {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+.med-reminder-dismiss {
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* 3. Bottom Sheet */
+.bottom-sheet-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.4);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.bottom-sheet-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.bottom-sheet-content {
+  background-color: var(--color-bg-main);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 24px;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+}
+.bottom-sheet-overlay.active .bottom-sheet-content {
+  transform: translateY(0);
+}
+.bottom-sheet-handle {
+  width: 40px;
+  height: 4px;
+  background-color: var(--color-border);
+  border-radius: 2px;
+  align-self: center;
+  margin-bottom: 24px;
+}
+.bottom-sheet-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.bottom-sheet-action:active {
+  transform: scale(0.98);
+}
+.bottom-sheet-action.danger {
+  color: var(--color-danger-text);
+  background-color: var(--color-danger-bg);
+  border-color: var(--color-danger-border);
+}
+.bottom-sheet-cancel {
+  background: none;
+  border: none;
+  padding: 16px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* Sidebar removal and styling adjustments */
+.sidebar {
+  display: none !important;
+}
+
+.dashboard-container {
+  justify-content: center;
+}
+
+/* Subtle floating reset button for presenter's pitch convenience */
+.floating-reset-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #1E293B;
+  border: 1px solid #334155;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg), 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+}
+
+.floating-reset-btn:hover {
+  background-color: #334155;
+  color: var(--color-white);
+  border-color: #475569;
+  transform: rotate(60deg);
+}
+
+.floating-reset-btn:active {
+  transform: scale(0.95);
 }
