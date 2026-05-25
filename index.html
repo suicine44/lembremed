@@ -20,109 +20,6 @@
 
   <div class="dashboard-container">
     
-    <!-- Sidebar Control Panel -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h2>
-          <!-- LembreMed Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 24px; height: 24px; color: var(--color-primary);">
-            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-            <path d="M12 5v14M5 12h14" stroke-width="2"/>
-          </svg>
-          LembreMed
-        </h2>
-        <p>Protótipo Visual Interativo</p>
-      </div>
-
-      <div class="role-switcher-container">
-        <span class="role-switcher-title">Filtro de Telas</span>
-        <div class="role-switcher-tabs" id="role-switcher">
-          <button class="role-switcher-tab active" data-role="all">Geral</button>
-          <button class="role-switcher-tab" data-role="patient">Paciente</button>
-          <button class="role-switcher-tab" data-role="caregiver">Cuidador</button>
-        </div>
-      </div>
-
-      
-      
-      <div class="screen-list" id="sidebar-screen-list">
-        <!-- SHARED SCREENS -->
-        <button class="screen-btn active" data-target="screen-1" data-role="shared">
-          <span class="screen-number">1</span>
-          1. Cadastro Inicial
-        </button>
-        <button class="screen-btn" data-target="screen-2" data-role="shared">
-          <span class="screen-number">2</span>
-          2. Tipo de Perfil
-        </button>
-        <button class="screen-btn" data-target="screen-3" data-role="shared">
-          <span class="screen-number">3</span>
-          3. Onboarding Intro
-        </button>
-
-        <!-- PATIENT FLOW -->
-        <button class="screen-btn" data-target="screen-patient-home" data-role="patient">
-          <span class="screen-number">12</span>
-          12. Paciente - Início
-        </button>
-        <button class="screen-btn" data-target="screen-6" data-role="patient">
-          <span class="screen-number">6</span>
-          6. Paciente - Agenda
-        </button>
-        <button class="screen-btn" data-target="screen-patient-meds" data-role="patient">
-          <span class="screen-number">13</span>
-          13. Paciente - Remédios
-        </button>
-        <button class="screen-btn" data-target="screen-4" data-role="patient">
-          <span class="screen-number">4</span>
-          4. Adicionar Remédio
-        </button>
-        <button class="screen-btn" data-target="screen-5" data-role="patient">
-          <span class="screen-number">5</span>
-          5. Busca de Medicamentos
-        </button>
-        <button class="screen-btn" data-target="screen-patient-alerts" data-role="patient">
-          <span class="screen-number">14</span>
-          14. Paciente - Alertas
-        </button>
-        <button class="screen-btn" data-target="screen-patient-settings" data-role="patient">
-          <span class="screen-number">15</span>
-          15. Paciente - Ajustes
-        </button>
-
-        <!-- CAREGIVER FLOW -->
-        <button class="screen-btn" data-target="screen-add-patient" data-role="caregiver">
-          <span class="screen-number">+</span>
-          Adicionar Paciente
-        </button>
-        <button class="screen-btn" data-target="screen-7" data-role="caregiver">
-          <span class="screen-number">7</span>
-          7. Painel do Cuidador
-        </button>
-        <button class="screen-btn" data-target="screen-11" data-role="caregiver">
-          <span class="screen-number">11</span>
-          11. Perfil do Paciente
-        </button>
-        <button class="screen-btn" data-target="screen-8" data-role="caregiver">
-          <span class="screen-number">8</span>
-          8. Agenda do Paciente
-        </button>
-        <button class="screen-btn" data-target="screen-9" data-role="caregiver">
-          <span class="screen-number">9</span>
-          9. Central de Alertas
-        </button>
-        <button class="screen-btn" data-target="screen-10" data-role="caregiver">
-          <span class="screen-number">10</span>
-          10. Configurações
-        </button>
-      </div>
-      
-      <div class="sidebar-footer">
-        <span>Versão Pixel-Perfect</span>
-        <button class="reset-btn" id="btn-reset-simulator">Reiniciar</button>
-      </div>
-    </aside>
-    
     <!-- Main Simulator Workspace -->
     <main class="simulator-workspace">
       
@@ -1718,6 +1615,16 @@
 
   <!-- WAI-ARIA Live Announcer for screen readers and vocal synthesis accessibility -->
   <div id="app-live-announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Subtle floating reset button for presentation pitch convenience -->
+  <button id="btn-reset-simulator" class="floating-reset-btn" aria-label="Reiniciar Protótipo" title="Reiniciar Protótipo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+      <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+      <path d="M16 3h5v5"/>
+      <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+      <path d="M8 21H3v-5"/>
+    </svg>
+  </button>
 
   <script src="js/main.js"></script>
 </body>

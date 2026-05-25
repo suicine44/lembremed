@@ -2493,3 +2493,43 @@ body.font-xlarge {
   cursor: pointer;
   margin-top: 8px;
 }
+
+/* Sidebar removal and styling adjustments */
+.sidebar {
+  display: none !important;
+}
+
+.dashboard-container {
+  justify-content: center;
+}
+
+/* Subtle floating reset button for presenter's pitch convenience */
+.floating-reset-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #1E293B;
+  border: 1px solid #334155;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg), 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+}
+
+.floating-reset-btn:hover {
+  background-color: #334155;
+  color: var(--color-white);
+  border-color: #475569;
+  transform: rotate(60deg);
+}
+
+.floating-reset-btn:active {
+  transform: scale(0.95);
+}
