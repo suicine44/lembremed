@@ -303,7 +303,13 @@
             <!-- SCREEN 4: ADD MEDICATION WELCOME -->
             <div class="app-screen" id="screen-4">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
+                <button class="btn-back" id="btn-screen-4-back" style="background: none; border: none; cursor: pointer; color: var(--color-text-dark); display: flex; align-items: center; padding: 4px; font-weight: 700; font-size: 14px;" aria-label="Voltar">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                  Voltar
+                </button>
+                <div class="brand-logo" style="margin-right: 16px;"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content">
                 <h2 class="welcome-title" style="font-size: 22px; margin-top: 8px; margin-bottom: 24px;">Adicione seus medicamentos</h2>
@@ -335,7 +341,13 @@
             <!-- SCREEN 5: MEDICINE SEARCH -->
             <div class="app-screen" id="screen-5">
               <div class="screen-header">
-                <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
+                <button class="btn-back" id="btn-screen-5-back" style="background: none; border: none; cursor: pointer; color: var(--color-text-dark); display: flex; align-items: center; padding: 4px; font-weight: 700; font-size: 14px;" aria-label="Voltar">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 2px;">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                  Voltar
+                </button>
+                <div class="brand-logo" style="margin-right: 16px;"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="display: flex; flex-direction: column; height: 100%;">
                 
@@ -483,6 +495,42 @@
                       <div class="dropdown-item-text">
                         <h4>Nebulização com Berotec</h4>
                         <p>Solução para Inalação</p>
+                      </div>
+                    </div>
+
+                    <!-- 13. Ozempic 1mg -->
+                    <div class="dropdown-item" data-med="Ozempic 1mg">
+                      <div class="dropdown-item-icon blue">
+                        <!-- Syringe icon -->
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-syringe"/></svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Ozempic 1mg</h4>
+                        <p>Solução Injetável (Caneta)</p>
+                      </div>
+                    </div>
+
+                    <!-- 14. Anlodipina 5mg -->
+                    <div class="dropdown-item" data-med="Anlodipina 5mg">
+                      <div class="dropdown-item-icon">
+                        <!-- Pill icon -->
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Anlodipina 5mg</h4>
+                        <p>Uso Oral (Comprimido)</p>
+                      </div>
+                    </div>
+
+                    <!-- 15. Varfarina 5mg -->
+                    <div class="dropdown-item" data-med="Varfarina 5mg">
+                      <div class="dropdown-item-icon orange">
+                        <!-- Pill icon -->
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
+                      </div>
+                      <div class="dropdown-item-text">
+                        <h4>Varfarina 5mg</h4>
+                        <p>Uso Oral (Comprimido)</p>
                       </div>
                     </div>
 
@@ -750,7 +798,7 @@
                   <!-- Dynamic Meds Checklist will be populated here -->
                 </div>
                 
-                <button class="btn-primary" style="padding: 12px; font-size: 14px; margin-bottom: 16px;">
+                <button id="btn-caregiver-add-med" class="btn-primary" style="padding: 12px; font-size: 14px; margin-bottom: 16px;">
                   + Adicionar medicamento
                 </button>
               </div>
@@ -1183,11 +1231,18 @@
 
   <!-- Scripts Modulares Fatiados -->
   <script src="js/components.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/agenda_logic.js"></script>
   <script src="js/state.js"></script>
   <script src="js/router.js"></script>
-  <script src="js/onboarding.js"></script>
+  <script src="js/registration.js"></script>
+  <script src="js/medSearch.js"></script>
+  <script src="js/timePicker.js"></script>
   <script src="js/caregiver.js"></script>
   <script src="js/patient.js"></script>
-  <script src="js/app.js"></script>
+  <script src="js/navigation.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/emergency.js"></script>
+  <script src="js/shortcuts.js"></script>
 </body>
 </html>

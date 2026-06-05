@@ -81,6 +81,10 @@ const appScreens = document.querySelectorAll('.app-screen');
 // ==========================================================================
 // APP STATE & INTERACTIVE DEMO (PITCH MODE)
 // ==========================================================================
+// DEMO MODE ONLY: Clear all storage on refresh so it's plug-and-play every time
+// ==========================================================================
+localStorage.clear();
+sessionStorage.clear();
 
 const appState = {
   mode: 'pitch',
@@ -380,8 +384,14 @@ function prepareScreen8ForPatient(patientId) {
         </div>
       `;
       
+      row.setAttribute('tabindex', '0');
+      row.setAttribute('role', 'checkbox');
+      row.setAttribute('aria-checked', isTaken ? 'true' : 'false');
+      row.setAttribute('aria-label', `Medicamento ${med.name}, dose ${med.dose}, às ${med.time || '08:00'}, status ${isTaken ? 'Tomado' : 'Pendente'}`);
+
       row.addEventListener('click', () => {
         const nowTaken = !row.classList.contains('taken');
+        row.setAttribute('aria-checked', nowTaken ? 'true' : 'false');
         if (nowTaken) {
           row.classList.add('taken');
           med.status = 'tomado';
@@ -394,6 +404,13 @@ function prepareScreen8ForPatient(patientId) {
           row.querySelector('.med-status-indicator').textContent = 'Pendente';
           row.querySelector('.med-status-indicator').className = 'med-status-indicator pending';
           announceToScreenReader(`Medicamento ${med.name} desmarcado`);
+        }
+      });
+
+      row.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          row.click();
         }
       });
       

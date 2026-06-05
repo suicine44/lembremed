@@ -182,8 +182,8 @@
   justify-content: center;
   padding: 40px;
   position: relative;
-  background-radial: radial-gradient(circle, #1E293B 0%, #0F172A 100%);
-  overflow-y: auto;
+  background: radial-gradient(circle, #1E293B 0%, #0F172A 100%);
+  overflow: hidden;
 }
 
 /* Physical Phone Container Frame */
@@ -199,6 +199,7 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
+  transform-origin: center center;
 }
 
 /* Phone physical buttons and hardware notches */

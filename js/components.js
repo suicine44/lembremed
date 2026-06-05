@@ -27,23 +27,23 @@ const Components = {
     if (role === 'patient') {
       return `
         <nav class="bottom-nav patient-nav">
-          <div class="nav-tab ${activeTab === 'patient-home' ? 'active' : ''}" data-nav="patient-home">
+          <div class="nav-tab ${activeTab === 'patient-home' ? 'active' : ''}" data-nav="patient-home" tabindex="0" role="link">
             <svg class="icon" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-home"/></svg>
             Início
           </div>
-          <div class="nav-tab ${activeTab === 'patient-agenda' ? 'active' : ''}" data-nav="patient-agenda">
+          <div class="nav-tab ${activeTab === 'patient-agenda' ? 'active' : ''}" data-nav="patient-agenda" tabindex="0" role="link">
             <svg class="icon" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-calendar"/></svg>
             Agenda
           </div>
-          <div class="nav-tab ${activeTab === 'patient-meds' ? 'active' : ''}" data-nav="patient-meds">
+          <div class="nav-tab ${activeTab === 'patient-meds' ? 'active' : ''}" data-nav="patient-meds" tabindex="0" role="link">
             <svg class="icon" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
             Remédios
           </div>
-          <div class="nav-tab ${activeTab === 'patient-alerts' ? 'active' : ''}" data-nav="patient-alerts">
+          <div class="nav-tab ${activeTab === 'patient-alerts' ? 'active' : ''}" data-nav="patient-alerts" tabindex="0" role="link">
             <svg class="icon" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-bell"/></svg>
             Alertas
           </div>
-          <div class="nav-tab ${activeTab === 'patient-settings' ? 'active' : ''}" data-nav="patient-settings">
+          <div class="nav-tab ${activeTab === 'patient-settings' ? 'active' : ''}" data-nav="patient-settings" tabindex="0" role="link">
             <svg class="icon" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-settings"/></svg>
             Ajustes
           </div>
@@ -52,19 +52,19 @@ const Components = {
     } else {
       return `
         <nav class="bottom-nav">
-          <div class="nav-tab ${activeTab === 'pacientes' ? 'active' : ''}" data-nav="pacientes">
+          <div class="nav-tab ${activeTab === 'pacientes' ? 'active' : ''}" data-nav="pacientes" tabindex="0" role="link">
             <svg class="icon" viewBox="0 0 24 24" stroke-width="2"><use href="#icon-users"/></svg>
             Pacientes
           </div>
-          <div class="nav-tab ${activeTab === 'agenda' ? 'active' : ''}" data-nav="agenda">
+          <div class="nav-tab ${activeTab === 'agenda' ? 'active' : ''}" data-nav="agenda" tabindex="0" role="link">
             <svg class="icon" viewBox="0 0 24 24" stroke-width="2"><use href="#icon-calendar"/></svg>
             Agenda
           </div>
-          <div class="nav-tab ${activeTab === 'alertas' ? 'active' : ''}" data-nav="alertas">
+          <div class="nav-tab ${activeTab === 'alertas' ? 'active' : ''}" data-nav="alertas" tabindex="0" role="link">
             <svg class="icon" viewBox="0 0 24 24" stroke-width="2"><use href="#icon-bell"/></svg>
             Alertas
           </div>
-          <div class="nav-tab ${activeTab === 'config' ? 'active' : ''}" data-nav="config">
+          <div class="nav-tab ${activeTab === 'config' ? 'active' : ''}" data-nav="config" tabindex="0" role="link">
             <svg class="icon" viewBox="0 0 24 24" stroke-width="2"><use href="#icon-settings"/></svg>
             Config
           </div>

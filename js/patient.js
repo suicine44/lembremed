@@ -254,22 +254,37 @@ if (noteInput) {
 // 6. Screen 8: Patient Daily Medication Checklist Toggle Interaction
 const medRows = document.querySelectorAll('.med-row');
 medRows.forEach(row => {
-  row.addEventListener('click', () => {
+  // Set accessibility attributes on page load
+  row.setAttribute('tabindex', '0');
+  row.setAttribute('role', 'checkbox');
+  row.setAttribute('aria-checked', row.classList.contains('taken') ? 'true' : 'false');
+
+  const toggleRow = () => {
     const isTaken = row.classList.contains('taken');
     const statusText = row.querySelector('.med-status-indicator');
     
     if (isTaken) {
       row.classList.remove('taken');
+      row.setAttribute('aria-checked', 'false');
       if (statusText) {
         statusText.textContent = 'Pendente';
         statusText.className = 'med-status-indicator pending';
       }
     } else {
       row.classList.add('taken');
+      row.setAttribute('aria-checked', 'true');
       if (statusText) {
         statusText.textContent = 'Tomado';
         statusText.className = 'med-status-indicator taken';
       }
+    }
+  };
+
+  row.addEventListener('click', toggleRow);
+  row.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleRow();
     }
   });
 });

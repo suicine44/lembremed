@@ -88,6 +88,23 @@ if (btnFlow1) {
   });
 }
 
+// Onboarding input field Enter key listeners to trigger continuation
+const regInputs = ['reg-name', 'reg-age'];
+regInputs.forEach(id => {
+  const input = document.getElementById(id);
+  if (input) {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const btnFlow1 = document.getElementById('btn-flow-1');
+        if (btnFlow1) {
+          e.preventDefault();
+          btnFlow1.click();
+        }
+      }
+    });
+  }
+});
+
 // Screen 2 -> Screen 3 (Role Selection -> Onboarding Intro)
 const btnFlow2 = document.getElementById('btn-flow-2');
 if (btnFlow2) {
@@ -465,7 +482,12 @@ if (btnConfirmMedTimes) {
     
     renderAgenda();
     renderPatientHomeChecklist(); // Sync patient dashboard
-    showScreen('screen-6');
+    if (appState.user.role === 'caregiver') {
+      prepareScreen8ForPatient(activePatientId);
+      showScreen('screen-8');
+    } else {
+      showScreen('screen-6');
+    }
   });
 }
 
@@ -575,8 +597,11 @@ if (searchInput && dropdownResults) {
   searchInput.addEventListener('input', filterResults);
   
   searchDropdownItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.stopPropagation();
+    // Inject accessibility attributes dynamically
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('role', 'option');
+
+    const selectItem = () => {
       searchDropdownItems.forEach(i => i.classList.remove('selected'));
       item.classList.add('selected');
       
@@ -584,6 +609,19 @@ if (searchInput && dropdownResults) {
       searchInput.value = medName;
       dropdownResults.classList.add('d-none');
       dropdownResults.style.display = 'none';
+    };
+
+    item.addEventListener('click', (e) => {
+      e.stopPropagation();
+      selectItem();
+    });
+
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        selectItem();
+      }
     });
   });
   
@@ -647,6 +685,28 @@ if (viewAgendaProfile) {
   viewAgendaProfile.addEventListener('click', () => {
     prepareScreen8ForPatient(activePatientId);
     showScreen('screen-8');
+  });
+}
+
+// Screen 4 header back button integration
+// Handles contextual routing based on active role (caregiver -> screen-8, patient -> screen-patient-meds)
+const btnScreen4Back = document.getElementById('btn-screen-4-back');
+if (btnScreen4Back) {
+  btnScreen4Back.addEventListener('click', () => {
+    if (appState.user.role === 'caregiver') {
+      showScreen('screen-8');
+    } else {
+      showScreen('screen-patient-meds');
+    }
+  });
+}
+
+// Screen 5 header back button integration
+// Directs back to screen-4
+const btnScreen5Back = document.getElementById('btn-screen-5-back');
+if (btnScreen5Back) {
+  btnScreen5Back.addEventListener('click', () => {
+    showScreen('screen-4');
   });
 }
 

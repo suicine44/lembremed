@@ -361,8 +361,8 @@ function showScreen(screenId) {
 
   // Define allowed screens per role
   const publicScreens = ['screen-1', 'screen-2', 'screen-3'];
-  const patientScreens = ['screen-patient-home', 'screen-patient-meds', 'screen-patient-alerts', 'screen-patient-settings', 'screen-5', 'screen-6'];
-  const caregiverScreens = ['screen-7', 'screen-add-patient', 'screen-8', 'screen-9', 'screen-10', 'screen-11', 'screen-5', 'screen-6'];
+  const patientScreens = ['screen-patient-home', 'screen-patient-meds', 'screen-patient-alerts', 'screen-patient-settings', 'screen-4', 'screen-5', 'screen-6'];
+  const caregiverScreens = ['screen-7', 'screen-add-patient', 'screen-8', 'screen-9', 'screen-10', 'screen-11', 'screen-4', 'screen-5', 'screen-6'];
 
   let allowed = true;
   if (isPatient && !patientScreens.includes(screenId) && !publicScreens.includes(screenId)) {

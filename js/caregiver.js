@@ -165,9 +165,15 @@ function renderPatientHomeChecklist() {
       </div>
     `;
     
+    row.setAttribute('tabindex', '0');
+    row.setAttribute('role', 'checkbox');
+    row.setAttribute('aria-checked', isTaken ? 'true' : 'false');
+    row.setAttribute('aria-label', `Medicamento ${med.name}, dose ${med.dose}, às ${med.time}, status ${isTaken ? 'Tomado' : 'Pendente'}`);
+
     row.addEventListener('click', () => {
       const nowTaken = med.status !== 'tomado';
       med.status = nowTaken ? 'tomado' : 'pendente';
+      row.setAttribute('aria-checked', nowTaken ? 'true' : 'false');
       
       // Sync with Screen 6 Agenda Data if the selected day is today (2026-05-21)
       const agendaToday = agendaData['2026-05-21'];
@@ -182,6 +188,13 @@ function renderPatientHomeChecklist() {
       // Update UI
       renderPatientHomeChecklist();
       renderAgenda(); // Sync screen 6
+    });
+
+    row.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        row.click();
+      }
     });
     
     checklistContainer.appendChild(row);
@@ -223,6 +236,15 @@ function renderPatientMedsList() {
       <span class="profile-med-item-time">${Components.escapeHTML(med.time)}</span>
     `;
     container.appendChild(card);
+  });
+}
+
+// Caregiver add medication button router integration
+// Directs caregiver to screen-4 (Add medication hub) when clicked
+const btnCaregiverAddMed = document.getElementById('btn-caregiver-add-med');
+if (btnCaregiverAddMed) {
+  btnCaregiverAddMed.addEventListener('click', () => {
+    showScreen('screen-4');
   });
 }
 
