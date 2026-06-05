@@ -18,6 +18,119 @@
 <body>
   <h1 class="sr-only">LembreMed - Protótipo Visual Interativo</h1>
 
+  <!-- SVG Icon Sprite — defined once, referenced via <use href="#icon-name"/> -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="icon-pill" viewBox="0 0 24 24">
+      <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/>
+      <path d="m8.5 15.5 7-7"/>
+    </symbol>
+    <symbol id="icon-bell" viewBox="0 0 24 24">
+      <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+    </symbol>
+    <symbol id="icon-home" viewBox="0 0 24 24">
+      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+    </symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+      <circle cx="9" cy="7" r="4"/>
+    </symbol>
+    <symbol id="icon-users-group" viewBox="0 0 24 24">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+      <circle cx="9" cy="7" r="4"/>
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/>
+      <path d="m21 21-4.3-4.3"/>
+    </symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24">
+      <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+    </symbol>
+    <symbol id="icon-droplet" viewBox="0 0 24 24">
+      <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7Z"/>
+    </symbol>
+    <symbol id="icon-syringe" viewBox="0 0 24 24">
+      <path d="m18 2 4 4"/><path d="m17 7 3-3"/>
+      <path d="M19 9 8.7 19.3c-.2.2-.5.3-.7.3H5v-3c0-.3.1-.5.3-.7L15 6"/>
+      <path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/>
+    </symbol>
+    <symbol id="icon-breathe" viewBox="0 0 24 24">
+      <path d="M12.8 18.2a4 4 0 0 0 3-7.2"/><path d="M12.8 21.2a6 6 0 0 0 4.5-10.8"/>
+      <path d="M12.8 15.2a2 2 0 0 0 1.5-3.6"/><path d="M10.2 5.8a4 4 0 0 1-3 7.2"/>
+      <path d="M10.2 2.8a6 6 0 0 1-4.5 10.8"/><path d="M10.2 8.8a2 2 0 0 1-1.5 3.6"/>
+    </symbol>
+    <symbol id="icon-barcode" viewBox="0 0 24 24">
+      <path d="M3 5v14M6 5v14M10 5v14M14 5v14M17 5v14M21 5v14" stroke-width="3"/>
+    </symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+      <polyline points="9 18 15 12 9 6"/>
+    </symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24">
+      <polyline points="15 18 9 12 15 6"/>
+    </symbol>
+    <symbol id="icon-user-profile" viewBox="0 0 24 24">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </symbol>
+    <symbol id="icon-bell-alt" viewBox="0 0 24 24">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </symbol>
+    <symbol id="icon-help-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+      <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </symbol>
+    <symbol id="icon-contrast" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+    </symbol>
+    <symbol id="icon-logout" viewBox="0 0 24 24">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+      <polyline points="16 17 21 12 16 7"/>
+      <line x1="21" y1="12" x2="9" y2="12"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </symbol>
+    <symbol id="icon-link" viewBox="0 0 24 24">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+    </symbol>
+    <symbol id="icon-x-close" viewBox="0 0 24 24">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"/>
+      <polyline points="12 6 12 12 16 14"/>
+    </symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24">
+      <polyline points="3 6 5 6 21 6"/>
+      <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+    </symbol>
+    <symbol id="icon-refresh" viewBox="0 0 24 24">
+      <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+      <path d="M16 3h5v5"/>
+      <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+      <path d="M8 21H3v-5"/>
+    </symbol>
+    <symbol id="icon-phone-hangup" viewBox="0 0 24 24">
+      <path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L5.67 6.69a16 16 0 0 0 5.01 6.62Z"/>
+    </symbol>
+  </svg>
+
   <div class="dashboard-container">
     
     <!-- Main Simulator Workspace -->
@@ -57,7 +170,7 @@
           <!-- Screens Viewport -->
           <div class="screens-viewport">
             
-            <!-- SCREEN 1: CADASTRO -->
+            <!-- SCREEN 1: REGISTRATION -->
             <div class="app-screen active" id="screen-1">
               <div class="screen-header">
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
@@ -67,9 +180,9 @@
                 <p class="welcome-subtitle">Preencha os campos para continuar</p>
                 
                 <div class="input-group">
-                  <label for="reg-name">Nome completo <span class="required" aria-hidden="true" style="color: var(--color-danger-text);">*</span></label>
+                  <label for="reg-name">Nome completo <span class="required text-danger" aria-hidden="true">*</span></label>
                   <input type="text" id="reg-name" name="fullname" autocomplete="name" spellcheck="false" class="form-control" placeholder="Digite seu nome completo" required aria-required="true" aria-describedby="name-error-msg">
-                  <span id="name-error-msg" class="error-text" role="alert" style="display: none;">
+                  <span id="name-error-msg" class="error-text d-none" role="alert">
                     <span class="sr-only">Erro:</span> O preenchimento do nome completo é obrigatório para configurar o seu painel de medicamentos.
                   </span>
                 </div>
@@ -84,31 +197,38 @@
                   </select>
                 </div>
                 
-                <div class="input-group" style="margin-bottom: 32px;">
-                  <label for="reg-phone">Celular / Telefone</label>
-                  <input type="tel" id="reg-phone" name="phone" autocomplete="tel" inputmode="numeric" spellcheck="false" class="form-control" placeholder="(00) 00000-0000">
+                <!-- 
+                  [HISTÓRICO DE ALTERAÇÃO - UX & PRIVACIDADE]
+                  - O que existia antes: Um campo de formulário para 'Celular / Telefone' (id="reg-phone").
+                  - O que mudou: O campo de telefone foi completamente removido do cadastro para simplificar o fluxo, já que o app solicitará acesso nativo se necessário.
+                  - O que foi adicionado: Um campo de entrada numérico obrigatório para 'Idade' (id="reg-age") para inicializar o perfil do paciente com sua idade real e extinguir o estado indesejado de "Idade não informada".
+                -->
+                <div class="input-group mb-32">
+                  <label for="reg-age">Idade <span class="required text-danger" aria-hidden="true">*</span></label>
+                  <input type="number" id="reg-age" name="age" inputmode="numeric" min="0" max="120" class="form-control" placeholder="Digite sua idade (ex: 72)" required aria-required="true" aria-describedby="age-error-msg">
+                  <span id="age-error-msg" class="error-text d-none" role="alert">
+                    <span class="sr-only">Erro:</span> O preenchimento da idade é obrigatório para configurar o seu painel de medicamentos.
+                  </span>
                 </div>
                 
-                <div style="margin-top: auto;">
+                <div class="mt-auto">
                   <button class="btn-primary" id="btn-flow-1">Continuar</button>
                 </div>
               </div>
             </div>
             
-            <!-- SCREEN 2: SELECAO DE PERFIL -->
+            <!-- SCREEN 2: ROLE SELECTION -->
             <div class="app-screen" id="screen-2">
               <div class="screen-header">
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content">
-                <div class="role-cards-container" style="margin-top: 16px;" role="radiogroup" aria-label="Escolha seu perfil no aplicativo">
+                <div class="role-cards-container mt-16" role="radiogroup" aria-label="Escolha seu perfil no aplicativo">
                   <!-- Patient Role -->
                   <div class="role-card selected" id="role-patient" data-role="paciente" role="radio" aria-checked="true" tabindex="0" aria-label="Paciente - Quero agendar meus remédios">
                     <div class="role-icon-wrapper">
                       <!-- Heart Icon -->
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-                      </svg>
+                      <svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"><use href="#icon-heart"/></svg>
                     </div>
                     <div class="role-details">
                       <h3>Sou paciente</h3>
@@ -120,12 +240,7 @@
                   <div class="role-card" id="role-caregiver" data-role="cuidador" role="radio" aria-checked="false" tabindex="0" aria-label="Cuidador - Quero gerenciar a rotina de alguém">
                     <div class="role-icon-wrapper">
                       <!-- Caregiver Profile Icon -->
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                      </svg>
+                      <svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"><use href="#icon-users-group"/></svg>
                     </div>
                     <div class="role-details">
                       <h3>Sou cuidador</h3>
@@ -138,7 +253,7 @@
                   Escolha o seu perfil. Caso precise, um cuidador pode te ajudar no seu dia a dia de forma mais rápida.
                 </div>
                 
-                <div style="margin-top: auto;">
+                <div class="mt-auto">
                   <button class="btn-primary" id="btn-flow-2">Continuar</button>
                 </div>
               </div>
@@ -162,19 +277,13 @@
                   </div>
                   <div class="onboarding-slide" data-slide="1">
                     <div class="heart-badge-circle" style="background: linear-gradient(135deg, #10B981, #059669);">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-white)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                      </svg>
+                      <svg class="icon" viewBox="0 0 24 24" stroke-width="2.5" style="stroke: var(--color-white);"><use href="#icon-bell"/></svg>
                     </div>
                     <p class="onboarding-text">Receba lembretes na hora certa para nunca esquecer seus medicamentos.</p>
                   </div>
                   <div class="onboarding-slide" data-slide="2">
                     <div class="heart-badge-circle" style="background: linear-gradient(135deg, #F59E0B, #D97706);">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-white)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                        <circle cx="9" cy="7" r="4"/>
-                        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                      </svg>
+                      <svg class="icon" viewBox="0 0 24 24" stroke-width="2.5" style="stroke: var(--color-white);"><use href="#icon-users-group"/></svg>
                     </div>
                     <p class="onboarding-text">Conecte-se com cuidadores para um acompanhamento mais seguro e completo.</p>
                   </div>
@@ -185,7 +294,7 @@
                   <span class="dot"></span>
                 </div>
                 
-                <div style="margin-top: auto;">
+                <div class="mt-auto">
                   <button class="btn-primary" id="btn-flow-3">Começar</button>
                 </div>
               </div>
@@ -202,21 +311,16 @@
                 <div class="action-card" id="btn-card-search-med">
                   <div class="action-card-header">
                     <!-- Search glass -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="11" cy="11" r="8"/>
-                      <path d="m21 21-4.3-4.3"/>
-                    </svg>
+                    <svg class="icon" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-search"/></svg>
                     <h3>Pesquisar pelo nome</h3>
                   </div>
                   <p>Digite o nome do remédio, princípio ativo ou laboratório.</p>
                 </div>
                 
-                <div class="action-card" style="margin-bottom: 24px;">
+                <div class="action-card mb-24">
                   <div class="action-card-header">
                     <!-- Barcode SVG -->
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M3 5v14M6 5v14M10 5v14M14 5v14M17 5v14M21 5v14" stroke-width="3"/>
-                    </svg>
+                    <svg class="icon" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-barcode"/></svg>
                     <h3>Escanear Código</h3>
                   </div>
                   <p>Aponte a câmera para o código de barras na caixa do remédio.</p>
@@ -241,22 +345,16 @@
                   
                   <div class="search-wrapper">
                     <!-- Loupe -->
-                    <svg class="search-icon-fixed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="11" cy="11" r="8"/>
-                      <path d="m21 21-4.3-4.3"/>
-                    </svg>
+                    <svg class="icon search-icon-fixed" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-search"/></svg>
                     <input type="text" class="form-control search-input-mock" id="search-med-input" placeholder="Pesquisar medicamento…" aria-label="Pesquisar medicamento" autocomplete="off" name="medsearch">
                   </div>
                   
-                  <div class="dropdown-results" style="display: none;">
-                    <!-- 1. Dipirona 500mg (Padrão) -->
+                  <div class="dropdown-results d-none">
+                    <!-- 1. Dipirona 500mg (Default) -->
                     <div class="dropdown-item selected" data-med="Dipirona 500mg">
                       <div class="dropdown-item-icon">
                         <!-- Modern Pill SVG -->
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                          <path d="m8.5 15.5 7-7"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Dipirona 500mg</h4>
@@ -268,9 +366,7 @@
                     <div class="dropdown-item" data-med="Dipirona Gotas">
                       <div class="dropdown-item-icon">
                         <!-- Droplet -->
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-13-7-13S5 10.7 5 15a7 7 0 0 0 7 7Z"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-droplet"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Dipirona Gotas</h4>
@@ -281,10 +377,7 @@
                     <!-- 3. Dipirona Monoidratada -->
                     <div class="dropdown-item" data-med="Dipirona Monoidratada">
                       <div class="dropdown-item-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                          <path d="m8.5 15.5 7-7"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Dipirona Monoidratada</h4>
@@ -295,10 +388,7 @@
                     <!-- 4. Paracetamol 750mg -->
                     <div class="dropdown-item" data-med="Paracetamol 750mg">
                       <div class="dropdown-item-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                          <path d="m8.5 15.5 7-7"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Paracetamol 750mg</h4>
@@ -309,10 +399,7 @@
                     <!-- 5. Losartana Potássica 50mg -->
                     <div class="dropdown-item" data-med="Losartana Potássica 50mg">
                       <div class="dropdown-item-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                          <path d="m8.5 15.5 7-7"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Losartana Potássica 50mg</h4>
@@ -323,10 +410,7 @@
                     <!-- 6. Ibuprofeno 600mg -->
                     <div class="dropdown-item" data-med="Ibuprofeno 600mg">
                       <div class="dropdown-item-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                          <path d="m8.5 15.5 7-7"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Ibuprofeno 600mg</h4>
@@ -337,10 +421,7 @@
                     <!-- 7. Omeprazol 20mg -->
                     <div class="dropdown-item" data-med="Omeprazol 20mg">
                       <div class="dropdown-item-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                          <path d="m8.5 15.5 7-7"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Omeprazol 20mg</h4>
@@ -351,10 +432,7 @@
                     <!-- 8. Amoxicilina 500mg -->
                     <div class="dropdown-item" data-med="Amoxicilina 500mg">
                       <div class="dropdown-item-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                          <path d="m8.5 15.5 7-7"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Amoxicilina 500mg</h4>
@@ -365,10 +443,7 @@
                     <!-- 9. Metformina 850mg -->
                     <div class="dropdown-item" data-med="Metformina 850mg">
                       <div class="dropdown-item-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                          <path d="m8.5 15.5 7-7"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Metformina 850mg</h4>
@@ -379,10 +454,7 @@
                     <!-- 10. Rivaroxabana 20mg -->
                     <div class="dropdown-item" data-med="Rivaroxabana 20mg">
                       <div class="dropdown-item-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                          <path d="m8.5 15.5 7-7"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Rivaroxabana 20mg</h4>
@@ -394,14 +466,7 @@
                     <div class="dropdown-item" data-med="Insulina NPH">
                       <div class="dropdown-item-icon">
                         <!-- Syringe SVG -->
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="m18 2 4 4"/>
-                          <path d="m17 7 3-3"/>
-                          <path d="M19 9 8.7 19.3c-.2.2-.5.3-.7.3H5v-3c0-.3.1-.5.3-.7L15 6"/>
-                          <path d="m9 11 4 4"/>
-                          <path d="m5 19-3 3"/>
-                          <path d="m14 4 6 6"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-syringe"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Insulina NPH</h4>
@@ -409,18 +474,11 @@
                       </div>
                     </div>
 
-                    <!-- 12. Nebulização com Berotec -->
+                    <!-- 12. Nebulization with Berotec -->
                     <div class="dropdown-item" data-med="Nebulização com Berotec">
                       <div class="dropdown-item-icon">
                         <!-- Breathe icon -->
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                          <path d="M12.8 18.2a4 4 0 0 0 3-7.2"/>
-                          <path d="M12.8 21.2a6 6 0 0 0 4.5-10.8"/>
-                          <path d="M12.8 15.2a2 2 0 0 0 1.5-3.6"/>
-                          <path d="M10.2 5.8a4 4 0 0 1-3 7.2"/>
-                          <path d="M10.2 2.8a6 6 0 0 1-4.5 10.8"/>
-                          <path d="M10.2 8.8a2 2 0 0 1-1.5 3.6"/>
-                        </svg>
+                        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-breathe"/></svg>
                       </div>
                       <div class="dropdown-item-text">
                         <h4>Nebulização com Berotec</h4>
@@ -443,10 +501,7 @@
                   <!-- Selected Medicine Preview Card (Standard Card Pattern) -->
                   <div class="selected-med-preview-card">
                     <div class="selected-med-preview-icon">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                        <path d="m8.5 15.5 7-7"/>
-                      </svg>
+                      <svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-pill"/></svg>
                     </div>
                     <div class="selected-med-preview-info">
                       <h4 id="preview-med-name">Remédio</h4>
@@ -573,95 +628,10 @@
                 <!-- Accessible Medication List -->
                 <div class="agenda-med-list" id="agenda-med-list">
                   <!-- Javascript will populate this in real-time. This is our accessible static fallback -->
-                  <div class="agenda-med-card status-tomado" data-med-index="0">
-                    <div class="agenda-med-time">08:00</div>
-                    <div class="agenda-med-info">
-                      <h4>Losartana Potássica</h4>
-                      <p>50mg • 1 Comprimido</p>
-                    </div>
-                    <div class="agenda-status-badge tomado">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                      Tomado
-                    </div>
-                  </div>
-                  
-                  <div class="agenda-med-card status-pendente" data-med-index="1">
-                    <div class="agenda-med-time">12:00</div>
-                    <div class="agenda-med-info">
-                      <h4>Dipirona Sódica</h4>
-                      <p>500mg • 1 Comprimido</p>
-                    </div>
-                    <div class="agenda-status-badge pendente">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                      Pendente
-                    </div>
-                  </div>
-                  
-                  <div class="agenda-med-card status-pendente" data-med-index="2">
-                    <div class="agenda-med-time">18:00</div>
-                    <div class="agenda-med-info">
-                      <h4>Insulina NPH</h4>
-                      <p>10 UI • Injeção subcutânea</p>
-                    </div>
-                    <div class="agenda-status-badge pendente">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                      Pendente
-                    </div>
-                  </div>
-                  
-                  <div class="agenda-med-card status-pendente" data-med-index="3">
-                    <div class="agenda-med-time">22:00</div>
-                    <div class="agenda-med-info">
-                      <h4>Paracetamol</h4>
-                      <p>750mg • 1 Comprimido</p>
-                    </div>
-                    <div class="agenda-status-badge pendente">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                      Pendente
-                    </div>
-                  </div>
                 </div>
               </div>
               
               <!-- Patient Bottom Navigation -->
-              <nav class="bottom-nav patient-nav">
-                <div class="nav-tab" data-nav="patient-home">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9 22 9 12 15 12 15 22"/>
-                  </svg>
-                  Início
-                </div>
-                <div class="nav-tab active" data-nav="patient-agenda">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                  Agenda
-                </div>
-                <div class="nav-tab" data-nav="patient-meds">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                    <path d="m8.5 15.5 7-7"/>
-                  </svg>
-                  Remédios
-                </div>
-                <div class="nav-tab" data-nav="patient-alerts">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                  </svg>
-                  Alertas
-                </div>
-                <div class="nav-tab" data-nav="patient-settings">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                  Ajustes
-                </div>
-              </nav>
             </div>
             
             <!-- SCREEN 7: PAINEL DO CUIDADOR -->
@@ -670,7 +640,7 @@
                 <div class="brand-logo"><img src="assets/brand/logo.svg" alt="LembreMed" class="logo-img" width="120" height="22"></div>
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
-                <div class="section-title-bar" style="margin-top: 8px;">
+                <div class="section-title-bar mt-8">
                   <h3>Meus pacientes</h3>
                   <span id="caregiver-patients-count" style="font-size: 12px; font-weight: 700; color: var(--color-primary);">0 pacientes</span>
                 </div>
@@ -685,37 +655,6 @@
               </div>
               
               <!-- Bottom Tab Navigation -->
-              <nav class="bottom-nav">
-                <div class="nav-tab active" data-nav="pacientes">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                  </svg>
-                  Pacientes
-                </div>
-                <div class="nav-tab" data-nav="agenda">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                  Agenda
-                </div>
-                <div class="nav-tab" data-nav="alertas">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                  </svg>
-                  Alertas
-                </div>
-                <div class="nav-tab" data-nav="config">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                  Config
-                </div>
-              </nav>
             </div>
 
             <!-- SCREEN: ADD PATIENT FORM (Cuidador) -->
@@ -731,9 +670,9 @@
                 <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 24px;">Preencha os dados do paciente que você deseja gerenciar.</p>
                 
                 <div class="input-group">
-                  <label for="add-patient-name">Nome completo <span class="required" aria-hidden="true" style="color: var(--color-danger-text);">*</span></label>
+                  <label for="add-patient-name">Nome completo <span class="required text-danger" aria-hidden="true">*</span></label>
                   <input type="text" id="add-patient-name" name="patientname" autocomplete="off" spellcheck="false" class="form-control" placeholder="Nome do paciente" required aria-required="true" aria-describedby="add-patient-name-error">
-                  <span id="add-patient-name-error" class="error-text" role="alert" style="display: none;">
+                  <span id="add-patient-name-error" class="error-text d-none" role="alert">
                     <span class="sr-only">Erro:</span> O nome do paciente é obrigatório.
                   </span>
                 </div>
@@ -741,12 +680,12 @@
                 <div class="input-group">
                   <label for="add-patient-age">Idade</label>
                   <input type="text" id="add-patient-age" inputmode="numeric" class="form-control" placeholder="Ex: 78 anos">
-                  <span id="add-patient-age-error" class="error-text" role="alert" style="display: none;">
+                  <span id="add-patient-age-error" class="error-text d-none" role="alert">
                     <span class="sr-only">Erro:</span> A idade deve ser um número válido entre 0 e 130 anos.
                   </span>
                 </div>
                 
-                <div class="input-group" style="margin-bottom: 32px;">
+                <div class="input-group mb-32">
                   <label for="add-patient-phone">Telefone de contato</label>
                   <input type="tel" id="add-patient-phone" name="patientphone" autocomplete="tel" inputmode="numeric" class="form-control" placeholder="(00) 00000-0000">
                 </div>
@@ -792,10 +731,10 @@
               </div>
               <div class="screen-content" style="padding-bottom: 0;">
                 <div class="patient-profile-header">
-                  <div class="patient-profile-avatar">MC</div>
+                  <div class="patient-profile-avatar" id="agenda-profile-avatar">--</div>
                   <div class="patient-profile-details">
-                    <h4>Maria Cleusa</h4>
-                    <p>78 anos • Histórico estável</p>
+                    <h4 id="agenda-profile-name">Nenhum Paciente</h4>
+                    <p id="agenda-profile-desc">Selecione um paciente para ver a agenda</p>
                   </div>
                 </div>
                 
@@ -808,78 +747,7 @@
                 </div>
                 
                 <div class="meds-checklist" id="patient-meds-checklist">
-                  <!-- Med 1: Losartana -->
-                  <div class="med-row taken" data-med-id="losartana">
-                    <div class="med-icon">
-                      <!-- Capsule Pill -->
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                        <path d="m8.5 15.5 7-7"/>
-                      </svg>
-                    </div>
-                    <div class="med-info">
-                      <h4>Losartana 50mg</h4>
-                      <p>1 comprimido • Uso oral</p>
-                    </div>
-                    <div class="med-time-status">
-                      <span class="med-time">08:00</span>
-                      <span class="med-status-indicator taken">Tomado</span>
-                    </div>
-                  </div>
-                  
-                  <!-- Med 2: Insulina -->
-                  <div class="med-row" data-med-id="insulina">
-                    <div class="med-icon blue">
-                      <!-- Syringe -->
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m18 2 4 4M17 7l3-3M19 9l1.5-1.5M14 4 9.3 8.7a4.9 4.9 0 0 0 0 6.9l.4.4a4.9 4.9 0 0 0 6.9 0L20 11.3M9.3 8.7 5.7 5.1M16.3 15.7l-3.6-3.6M6 14l-4 4v4h4l4-4M13 7l-2.5 2.5"/>
-                      </svg>
-                    </div>
-                    <div class="med-info">
-                      <h4>Insulina</h4>
-                      <p>10 UI • Injeção SC</p>
-                    </div>
-                    <div class="med-time-status">
-                      <span class="med-time">13:00</span>
-                      <span class="med-status-indicator pending">Pendente</span>
-                    </div>
-                  </div>
-                  
-                  <!-- Med 3: Dipirona -->
-                  <div class="med-row" data-med-id="dipirona">
-                    <div class="med-icon orange">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                        <path d="m8.5 15.5 7-7"/>
-                      </svg>
-                    </div>
-                    <div class="med-info">
-                      <h4>Dipirona</h4>
-                      <p>1 comprimido • Se necessário</p>
-                    </div>
-                    <div class="med-time-status">
-                      <span class="med-time">20:00</span>
-                      <span class="med-status-indicator pending">Agendado</span>
-                    </div>
-                  </div>
-                  
-                  <!-- Med 4: Metformina -->
-                  <div class="med-row" data-med-id="metformina">
-                    <div class="med-icon blue">
-                      <!-- Liquid Bottle -->
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M10 2h4M12 2v3M9 5h6M19 10v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V10c0-2 2-3 2-3h10s2 1 2 3Z"/>
-                      </svg>
-                    </div>
-                    <div class="med-info">
-                      <h4>Metformina 850mg</h4>
-                      <p>1 comprimido • Uso oral</p>
-                    </div>
-                    <div class="med-time-status">
-                      <span class="med-time">22:00</span>
-                      <span class="med-status-indicator pending">Agendado</span>
-                    </div>
-                  </div>
+                  <!-- Dynamic Meds Checklist will be populated here -->
                 </div>
                 
                 <button class="btn-primary" style="padding: 12px; font-size: 14px; margin-bottom: 16px;">
@@ -888,37 +756,6 @@
               </div>
               
               <!-- Bottom Tab Navigation -->
-              <nav class="bottom-nav">
-                <div class="nav-tab active" data-nav="pacientes">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                  </svg>
-                  Pacientes
-                </div>
-                <div class="nav-tab" data-nav="agenda">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                  Agenda
-                </div>
-                <div class="nav-tab" data-nav="alertas">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                  </svg>
-                  Alertas
-                </div>
-                <div class="nav-tab" data-nav="config">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                  Config
-                </div>
-              </nav>
             </div>
             
             <!-- SCREEN 9: CENTRAL DE ALERTAS -->
@@ -934,119 +771,11 @@
                 </div>
                 
                 <div class="alerts-feed">
-                  <!-- Warning (Yellow) -->
-                  <div class="alert-item warning" data-patient-id="cleusa" tabindex="0" aria-label="Alerta de Maria Cleusa: Losartana não confirmado">
-                    <div class="alert-item-content">
-                      <!-- Warning bell or triangle -->
-                      <svg class="alert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
-                        <line x1="12" y1="9" x2="12" y2="13"/>
-                        <line x1="12" y1="17" x2="12.01" y2="17"/>
-                      </svg>
-                      <div class="alert-item-text">
-                        <strong>Atenção:</strong> <span class="clickable-patient-name" data-patient-id="cleusa">Maria Cleusa</span> não confirmou o uso do <strong>Losartana</strong> das 08:00.
-                      </div>
-                    </div>
-                    <div class="alert-item-chevron">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  <!-- Danger (Red) -->
-                  <div class="alert-item danger" data-patient-id="pedro" tabindex="0" aria-label="Alerta de Pedro Francisco: 2 medicamentos atrasados">
-                    <div class="alert-item-content">
-                      <!-- Alert octagram/stop sign -->
-                      <svg class="alert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <octagon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
-                        <line x1="12" y1="8" x2="12" y2="12"/>
-                        <line x1="12" y1="16" x2="12.01" y2="16"/>
-                      </svg>
-                      <div class="alert-item-text">
-                        <strong>Crítico:</strong> <span class="clickable-patient-name" data-patient-id="pedro">Pedro Francisco</span> está com <strong>2 medicamentos atrasados</strong>.
-                      </div>
-                    </div>
-                    <div class="alert-item-chevron">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  <!-- Success (Green) -->
-                  <div class="alert-item success" data-patient-id="cleusa" tabindex="0" aria-label="Notificação de Maria Cleusa: consulta confirmada">
-                    <div class="alert-item-content">
-                      <!-- Checkmark -->
-                      <svg class="alert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                        <polyline points="22 4 12 14.01 9 11.01"/>
-                      </svg>
-                      <div class="alert-item-text">
-                        <strong>Confirmado:</strong> Consulta com cardiologista para <span class="clickable-patient-name" data-patient-id="cleusa">Maria Cleusa</span> agendada com sucesso para <strong>25/05</strong>.
-                      </div>
-                    </div>
-                    <div class="alert-item-chevron">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  <!-- Info (Blue) -->
-                  <div class="alert-item info" data-patient-id="pedro" tabindex="0" aria-label="Informação de Pedro Francisco: receita vencendo em 2 dias">
-                    <div class="alert-item-content">
-                      <!-- Info circle -->
-                      <svg class="alert-item-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="12" y1="16" x2="12" y2="12"/>
-                        <line x1="12" y1="8" x2="12.01" y2="8"/>
-                      </svg>
-                      <div class="alert-item-text">
-                        <strong>Info:</strong> Próximo envio de receita médica para <span class="clickable-patient-name" data-patient-id="pedro">Pedro Francisco</span> vence em <strong>02 dias</strong>.
-                      </div>
-                    </div>
-                    <div class="alert-item-chevron">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </div>
-                  </div>
+                  <!-- Dynamic Alerts Feed will be populated here -->
                 </div>
               </div>
               
               <!-- Bottom Tab Navigation -->
-              <nav class="bottom-nav">
-                <div class="nav-tab" data-nav="pacientes">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                  </svg>
-                  Pacientes
-                </div>
-                <div class="nav-tab" data-nav="agenda">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                  Agenda
-                </div>
-                <div class="nav-tab active" data-nav="alertas">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                  </svg>
-                  Alertas
-                </div>
-                <div class="nav-tab" data-nav="config">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                  Config
-                </div>
-              </nav>
             </div>
             
             <!-- SCREEN 10: CONFIGURAÇÕES -->
@@ -1060,21 +789,15 @@
                 <div class="settings-list" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;">
                   <div class="setting-item" id="btn-cg-account" role="button" tabindex="0" aria-label="Editar minha conta" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
                     <div style="display: flex; align-items: center; gap: 12px; color: var(--color-text-dark); font-weight: 600; font-size: 14px;">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                        <circle cx="12" cy="7" r="4"/>
-                      </svg>
+                      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" style="color: var(--color-primary);"><use href="#icon-user-profile"/></svg>
                       Minha Conta
                     </div>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-light);"><polyline points="9 18 15 12 9 6"/></svg>
+                    <svg class="icon" width="16" height="16" viewBox="0 0 24 24" stroke-width="2.5" style="color: var(--color-text-light);"><use href="#icon-chevron-right"/></svg>
                   </div>
                   
                   <div class="setting-item" id="btn-cg-notifications" role="button" tabindex="0" aria-label="Configurar notificações" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
                     <div style="display: flex; align-items: center; gap: 12px; color: var(--color-text-dark); font-weight: 600; font-size: 14px;">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);">
-                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-                      </svg>
+                      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" style="color: var(--color-primary);"><use href="#icon-bell-alt"/></svg>
                       Notificações
                     </div>
                     <span id="cg-notif-status" style="font-size: 12px; font-weight: 700; color: var(--color-success-text);">Ativadas</span>
@@ -1082,14 +805,10 @@
 
                   <div class="setting-item" id="btn-cg-about" role="button" tabindex="0" aria-label="Sobre o LembreMed" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
                     <div style="display: flex; align-items: center; gap: 12px; color: var(--color-text-dark); font-weight: 600; font-size: 14px;">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
-                        <line x1="12" y1="17" x2="12.01" y2="17"/>
-                      </svg>
+                      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" style="color: var(--color-primary);"><use href="#icon-help-circle"/></svg>
                       Sobre o App
                     </div>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-text-light);"><polyline points="9 18 15 12 9 6"/></svg>
+                    <svg class="icon" width="16" height="16" viewBox="0 0 24 24" stroke-width="2.5" style="color: var(--color-text-light);"><use href="#icon-chevron-right"/></svg>
                   </div>
                 </div>
 
@@ -1100,10 +819,7 @@
                   <!-- High Contrast Toggle (Caregiver) -->
                   <div class="setting-item" id="setting-cg-high-contrast" role="button" tabindex="0" aria-label="Alternar Contraste Alto" style="border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
                     <div style="display: flex; align-items: center; gap: 12px; color: var(--color-text-dark); font-weight: 600; font-size: 14px;">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary);">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                      </svg>
+                      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" style="color: var(--color-primary);"><use href="#icon-contrast"/></svg>
                       Contraste Alto
                     </div>
                     <div id="cg-contrast-toggle-pill" style="width: 44px; height: 24px; background-color: var(--color-border); border-radius: 12px; position: relative;">
@@ -1125,50 +841,15 @@
                   <div class="setting-item" id="btn-cg-logout" role="button" tabindex="0" aria-label="Sair da conta" style="border: 1px solid var(--color-danger-bg); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
 
                     <div style="display: flex; align-items: center; gap: 12px; color: var(--color-danger-text); font-weight: 600; font-size: 14px;">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-danger-text);">
-                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                        <polyline points="16 17 21 12 16 7"/>
-                        <line x1="21" y1="12" x2="9" y2="12"/>
-                      </svg>
+                      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" class="text-danger"><use href="#icon-logout"/></svg>
                       Sair
                     </div>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-danger-text);"><polyline points="9 18 15 12 9 6"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-danger"><polyline points="9 18 15 12 9 6"/></svg>
                   </div>
                 </div>
               </div>
               
               <!-- Bottom Tab Navigation -->
-              <nav class="bottom-nav">
-                <div class="nav-tab" data-nav="pacientes">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                  </svg>
-                  Pacientes
-                </div>
-                <div class="nav-tab" data-nav="agenda">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                  Agenda
-                </div>
-                <div class="nav-tab" data-nav="alertas">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                  </svg>
-                  Alertas
-                </div>
-                <div class="nav-tab active" data-nav="config">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                  Config
-                </div>
-              </nav>
             </div>
             
             <!-- SCREEN 11: PERFIL DO PACIENTE (DETALHADO) -->
@@ -1186,10 +867,10 @@
                 
                 <!-- Patient Profile Card -->
                 <div class="patient-profile-card">
-                  <div class="patient-profile-avatar-large" id="profile-avatar">MC</div>
-                  <h2 id="profile-name" style="font-size: 20px; font-weight: 800; color: var(--color-text-dark); margin-top: 4px;">Maria Cleusa</h2>
-                  <p id="profile-age" style="font-size: 13px; color: var(--color-text-muted);">78 anos • Paciente Monitorada</p>
-                  <span class="patient-status-badge taken" id="profile-status-badge" style="margin-top: 4px; display: inline-block;">Em Dia</span>
+                  <div class="patient-profile-avatar-large" id="profile-avatar">--</div>
+                  <h2 id="profile-name" style="font-size: 20px; font-weight: 800; color: var(--color-text-dark); margin-top: 4px;">Nenhum Paciente</h2>
+                  <p id="profile-age" style="font-size: 13px; color: var(--color-text-muted);">Idade • Status</p>
+                  <span class="patient-status-badge taken" id="profile-status-badge" style="margin-top: 4px; display: none;">Em Dia</span>
                 </div>
                 
                 <!-- Monthly Adherence Card -->
@@ -1221,25 +902,23 @@
                 
                 <!-- Notes Feed Section -->
                 <h3 class="profile-group-title">Anotações do Cuidador</h3>
-                <div class="notes-feed" id="profile-notes-feed" style="margin-bottom: 12px;">
+                <div class="notes-feed" id="profile-notes-feed" class="mb-12">
                   <!-- Dynamic Notes -->
                 </div>
                 
                 <!-- Add Note Form -->
-                <div class="add-note-form" style="margin-bottom: 20px;">
+                <div class="add-note-form mb-20">
                   <input type="text" id="profile-note-input" placeholder="Adicionar observação..." aria-label="Nova anotação de cuidados" style="border: 1.5px solid var(--color-border); border-radius: var(--radius-md); padding: 10px; font-size: 13px;">
                   <button id="btn-submit-note" style="background-color: var(--color-primary); border: none; color: white; padding: 10px 16px; border-radius: var(--radius-md); font-weight: 700; cursor: pointer; transition: background-color 0.2s ease;" aria-label="Salvar anotação">Enviar</button>
                 </div>
                 
                 <!-- Primary Actions -->
-                <div class="profile-actions" style="display: flex; flex-direction: column; gap: 8px;">
+                <div class="profile-actions d-flex flex-col gap-8">
                   <button class="btn-primary" id="btn-profile-view-agenda" style="padding: 14px; font-size: 14px;">
                     Ver Agenda Diária
                   </button>
                   <button id="btn-profile-call-contact" style="width: 100%; border: 2px solid var(--color-primary); background: transparent; color: var(--color-primary); padding: 12px; border-radius: var(--radius-pill); font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; transition: background-color 0.2s ease;">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                    </svg>
+                    <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-phone"/></svg>
                     Ligar para Contato
                   </button>
                 </div>
@@ -1247,37 +926,6 @@
               </div>
               
               <!-- Bottom Tab Navigation -->
-              <nav class="bottom-nav">
-                <div class="nav-tab active" data-nav="pacientes">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                  </svg>
-                  Pacientes
-                </div>
-                <div class="nav-tab" data-nav="agenda">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                  Agenda
-                </div>
-                <div class="nav-tab" data-nav="alertas">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                  </svg>
-                  Alertas
-                </div>
-                <div class="nav-tab" data-nav="config">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                  Config
-                </div>
-              </nav>
             </div>
 
             <!-- SCREEN 12: PACIENTE - INÍCIO -->
@@ -1291,7 +939,7 @@
                   <p>Hoje é <strong>21 de maio</strong>. Você tem <span id="patient-home-summary-count">0 de 4</span> medicamentos tomados.</p>
                 </div>
                 
-                <div class="section-title-bar" style="margin-top: 4px;">
+                <div class="section-title-bar mt-4">
                   <h3 style="font-size: 15px; font-weight: 800; color: var(--color-text-dark);">Seus Remédios de Hoje</h3>
                 </div>
                 
@@ -1304,44 +952,6 @@
               </div>
               
               <!-- Patient Bottom Navigation -->
-              <nav class="bottom-nav patient-nav">
-                <div class="nav-tab active" data-nav="patient-home">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9 22 9 12 15 12 15 22"/>
-                  </svg>
-                  Início
-                </div>
-                <div class="nav-tab" data-nav="patient-agenda">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                  Agenda
-                </div>
-                <div class="nav-tab" data-nav="patient-meds">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                    <path d="m8.5 15.5 7-7"/>
-                  </svg>
-                  Remédios
-                </div>
-                <div class="nav-tab" data-nav="patient-alerts">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                  </svg>
-                  Alertas
-                </div>
-                <div class="nav-tab" data-nav="patient-settings">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                  Ajustes
-                </div>
-              </nav>
             </div>
 
             <!-- SCREEN 13: PACIENTE - MEUS REMÉDIOS -->
@@ -1363,44 +973,6 @@
               </div>
               
               <!-- Patient Bottom Navigation -->
-              <nav class="bottom-nav patient-nav">
-                <div class="nav-tab" data-nav="patient-home">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9 22 9 12 15 12 15 22"/>
-                  </svg>
-                  Início
-                </div>
-                <div class="nav-tab" data-nav="patient-agenda">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                  Agenda
-                </div>
-                <div class="nav-tab active" data-nav="patient-meds">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                    <path d="m8.5 15.5 7-7"/>
-                  </svg>
-                  Remédios
-                </div>
-                <div class="nav-tab" data-nav="patient-alerts">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                  </svg>
-                  Alertas
-                </div>
-                <div class="nav-tab" data-nav="patient-settings">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                  Ajustes
-                </div>
-              </nav>
             </div>
 
             <!-- SCREEN 14: PACIENTE - MEUS ALERTAS -->
@@ -1418,44 +990,6 @@
               </div>
               
               <!-- Patient Bottom Navigation -->
-              <nav class="bottom-nav patient-nav">
-                <div class="nav-tab" data-nav="patient-home">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9 22 9 12 15 12 15 22"/>
-                  </svg>
-                  Início
-                </div>
-                <div class="nav-tab" data-nav="patient-agenda">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                  Agenda
-                </div>
-                <div class="nav-tab" data-nav="patient-meds">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                    <path d="m8.5 15.5 7-7"/>
-                  </svg>
-                  Remédios
-                </div>
-                <div class="nav-tab active" data-nav="patient-alerts">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                  </svg>
-                  Alertas
-                </div>
-                <div class="nav-tab" data-nav="patient-settings">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                  Ajustes
-                </div>
-              </nav>
             </div>
 
             <!-- SCREEN 15: PACIENTE - AJUSTES -->
@@ -1506,14 +1040,14 @@
                   </div>
                   <div class="setting-item" id="btn-patient-logout" role="button" tabindex="0" aria-label="Sair da conta" style="border: 1px solid var(--color-danger-bg); border-radius: var(--radius-md); padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; background-color: var(--color-white); cursor: pointer;">
                     <div style="display: flex; align-items: center; gap: 12px; color: var(--color-danger-text); font-weight: 600; font-size: 14px;">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-danger-text);">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-danger">
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
                         <polyline points="16 17 21 12 16 7"/>
                         <line x1="21" y1="12" x2="9" y2="12"/>
                       </svg>
                       Sair
                     </div>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-danger-text);"><polyline points="9 18 15 12 9 6"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-danger"><polyline points="9 18 15 12 9 6"/></svg>
                   </div>
                 </div>
                 
@@ -1525,11 +1059,11 @@
                 </div>
 
                 <!-- Caregiver emergency contact -->
-                <div class="caregiver-contact-card" style="margin-bottom: 24px;">
+                <div class="caregiver-contact-card" id="caregiver-contact-card" style="margin-bottom: 24px; display: none;">
                   <div class="caregiver-contact-header">
-                    <div class="caregiver-contact-avatar" style="font-size: 20px;">📞</div>
+                    <div class="caregiver-contact-avatar text-size-20">📞</div>
                     <div class="caregiver-contact-info">
-                      <h4>Contato de Emergência</h4>
+                      <h4 id="caregiver-contact-name">Contato de Emergência</h4>
                       <p>Suporte e Cuidador</p>
                     </div>
                   </div>
@@ -1543,44 +1077,6 @@
               </div>
               
               <!-- Patient Bottom Navigation -->
-              <nav class="bottom-nav patient-nav">
-                <div class="nav-tab" data-nav="patient-home">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                    <polyline points="9 22 9 12 15 12 15 22"/>
-                  </svg>
-                  Início
-                </div>
-                <div class="nav-tab" data-nav="patient-agenda">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                    <line x1="16" y1="2" x2="16" y2="6"/>
-                    <line x1="8" y1="2" x2="8" y2="6"/>
-                    <line x1="3" y1="10" x2="21" y2="10"/>
-                  </svg>
-                  Agenda
-                </div>
-                <div class="nav-tab" data-nav="patient-meds">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z" fill="none"/>
-                    <path d="m8.5 15.5 7-7"/>
-                  </svg>
-                  Remédios
-                </div>
-                <div class="nav-tab" data-nav="patient-alerts">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.94 1.94 0 0 0 3.4 0"/>
-                  </svg>
-                  Alertas
-                </div>
-                <div class="nav-tab active" data-nav="patient-settings">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                  </svg>
-                  Ajustes
-                </div>
-              </nav>
             </div>
 
           </div>
@@ -1625,11 +1121,11 @@
               <h4 id="bottom-sheet-med-name" style="font-size: 16px; font-weight: 800; color: var(--color-text-dark); margin-bottom: 4px;">Losartana</h4>
               <p id="bottom-sheet-med-dose" style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px;">50mg • Diário</p>
               <button class="bottom-sheet-action" id="btn-edit-med-time">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2"><use href="#icon-clock"/></svg>
                 Alterar Horário
               </button>
               <button class="bottom-sheet-action danger" id="btn-remove-med">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2"><use href="#icon-trash"/></svg>
                 Remover Medicamento
               </button>
               <button class="bottom-sheet-cancel" id="btn-close-bottom-sheet">Cancelar</button>
@@ -1640,9 +1136,7 @@
           <div class="custom-confirm-modal" id="confirm-call-modal" role="dialog" aria-modal="true" aria-labelledby="confirm-call-title" aria-describedby="confirm-call-desc">
             <div class="confirm-modal-content">
               <div class="confirm-modal-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
+                  <svg class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-phone"/></svg>
               </div>
               <h4 id="confirm-call-title">Confirmar Ligação</h4>
               <p id="confirm-call-desc">Você tem certeza de que deseja realizar esta ligação de emergência? Esta ação iniciará o contato imediato.</p>
@@ -1661,11 +1155,11 @@
               <p id="toast-call-subtitle">Iniciando ligação de voz</p>
             </div>
             <button class="toast-call-btn-hangup" id="btn-hangup-call" aria-label="Desligar ligação">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10.68 13.31a16 16 0 0 0 3.41 2.6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7 2 2 0 0 1 1.72 2v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L5.67 6.69a16 16 0 0 0 5.01 6.62Z"/>
-              </svg>
+              <svg class="icon" width="18" height="18" viewBox="0 0 24 24" stroke-width="2.5"><use href="#icon-phone-hangup"/></svg>
             </button>
           </div>
+          <!-- Global Navigation Container (Injected via JS) -->
+          <div id="global-nav-container"></div>
           
           <!-- Virtual Phone Home Indicator -->
           <div class="home-indicator-bar">
@@ -1684,14 +1178,16 @@
 
   <!-- Subtle floating reset button for presentation pitch convenience -->
   <button id="btn-reset-simulator" class="floating-reset-btn" aria-label="Reiniciar Protótipo" title="Reiniciar Protótipo">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
-      <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
-      <path d="M16 3h5v5"/>
-      <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
-      <path d="M8 21H3v-5"/>
-    </svg>
+    <svg class="icon" viewBox="0 0 24 24" stroke-width="2.5" style="width: 20px; height: 20px;"><use href="#icon-refresh"/></svg>
   </button>
 
-  <script src="js/main.js"></script>
+  <!-- Scripts Modulares Fatiados -->
+  <script src="js/components.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/onboarding.js"></script>
+  <script src="js/caregiver.js"></script>
+  <script src="js/patient.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

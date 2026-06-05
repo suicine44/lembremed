@@ -1,0 +1,737 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Premium Confirmation Modal for Emergency Calls */
+.custom-confirm-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.6); /* backdrop blur background */
+  backdrop-filter: blur(4px);
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 24px;
+}
+
+.custom-confirm-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.confirm-modal-content {
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: var(--shadow-lg), 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.custom-confirm-modal.active .confirm-modal-content {
+  transform: scale(1);
+}
+
+.confirm-modal-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px auto;
+}
+
+.confirm-modal-content h4 {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-text-dark);
+  margin-bottom: 8px;
+}
+
+.confirm-modal-content p {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.confirm-modal-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-confirm-cancel {
+  flex: 1;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  padding: 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-confirm-cancel:hover {
+  background-color: #CBD5E1;
+  color: var(--color-text-dark);
+}
+
+.btn-confirm-approve {
+  flex: 1;
+  background-color: var(--color-danger-text);
+  border: none;
+  color: var(--color-white);
+  padding: 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-confirm-approve:hover {
+  background-color: #7f1d1d;
+}
+
+/* ==========================================================================
+   ESCALONAMENTO DINÂMICO DE TIPOGRAFIA (IHC / ACESSIBILIDADE DE IDOSOS)
+   ========================================================================== */
+
+/* Redefinições cirúrgicas de fontes baseadas na escala tipográfica global */
+.phone-screen h1, 
+.phone-screen .welcome-title {
+  font-size: calc(22px * var(--font-scale)) !important;
+}
+
+.phone-screen .welcome-subtitle {
+  font-size: calc(14px * var(--font-scale)) !important;
+}
+
+.phone-screen h2, 
+.phone-screen .section-title {
+  font-size: calc(18px * var(--font-scale)) !important;
+}
+
+.phone-screen h3, 
+.phone-screen .role-card h3,
+.phone-screen .caregiver-contact-info h4,
+.phone-screen .med-card-info h4,
+.phone-screen .modal-title {
+  font-size: calc(16px * var(--font-scale)) !important;
+}
+
+.phone-screen h4, 
+.phone-screen .med-time,
+.phone-screen .agenda-section-title {
+  font-size: calc(14px * var(--font-scale)) !important;
+}
+
+.phone-screen p, 
+.phone-screen .role-card p,
+.phone-screen .caregiver-contact-info p,
+.phone-screen .med-card-info p,
+.phone-screen .modal-message {
+  font-size: calc(13px * var(--font-scale)) !important;
+}
+
+.phone-screen .med-dose {
+  font-size: calc(13px * var(--font-scale)) !important;
+}
+
+.phone-screen .btn-primary, 
+.phone-screen .btn-secondary, 
+.phone-screen .btn-emergency-call,
+.phone-screen .btn-confirm-cancel,
+.phone-screen .btn-confirm-approve {
+  font-size: calc(14px * var(--font-scale)) !important;
+}
+
+.phone-screen .nav-tab {
+  font-size: calc(11px * var(--font-scale)) !important;
+}
+
+.phone-screen .calendar-day .day-num {
+  font-size: calc(16px * var(--font-scale)) !important;
+}
+
+.phone-screen .calendar-day .day-name {
+  font-size: calc(11px * var(--font-scale)) !important;
+}
+
+.phone-screen .setting-item {
+  font-size: calc(14px * var(--font-scale)) !important;
+}
+
+.phone-screen #font-size-status {
+  font-size: calc(12px * var(--font-scale)) !important;
+}
+
+.phone-screen .form-control {
+  font-size: calc(14px * var(--font-scale)) !important;
+}
+
+/* ==========================================================================
+   ESTILOS DE CONTORNO DE FOCO ACESSÍVEL (WCAG OPERÁVEL)
+   ========================================================================== */
+
+/* Foco em botões e abas operáveis por teclado */
+.phone-screen .btn-primary:focus-visible,
+.phone-screen .btn-secondary:focus-visible,
+.phone-screen .btn-emergency-call:focus-visible,
+.phone-screen .btn-confirm-cancel:focus-visible,
+.phone-screen .btn-confirm-approve:focus-visible,
+.phone-screen .btn-emergency:focus-visible,
+.phone-screen #btn-hangup-call:focus-visible {
+  outline: 3px dashed var(--color-primary) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.4) !important;
+}
+
+.phone-screen .nav-tab:focus-visible {
+  outline: 3px dashed var(--color-primary) !important;
+  outline-offset: -2px !important;
+  border-radius: var(--radius-sm) !important;
+  background-color: var(--color-bg-secondary) !important;
+}
+
+.phone-screen .role-card:focus-visible {
+  outline: 3px dashed var(--color-primary) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.2) !important;
+}
+
+.phone-screen .agenda-med-card:focus-visible {
+  outline: 3px dashed var(--color-primary) !important;
+  outline-offset: 2px !important;
+  box-shadow: var(--shadow-md), 0 0 0 4px rgba(0, 168, 255, 0.2) !important;
+}
+
+.phone-screen .setting-item:focus-visible {
+  outline: 3px dashed var(--color-primary) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(0, 168, 255, 0.2) !important;
+}
+
+.phone-screen .form-control:focus-visible {
+  outline: 3px solid var(--color-primary) !important;
+  outline-offset: 0 !important;
+  border-color: var(--color-primary-dark) !important;
+}
+
+/* Espaçamento adaptativo inferior específico para garantir respiro visual na rolagem da Tela 11 */
+#screen-11 .screen-content {
+  padding-bottom: calc(56px * var(--font-scale, 1)) !important;
+}
+
+/* ==========================================================================
+   PICKER DE HORÁRIOS ESTILO IOS (SCREEN 5)
+   ========================================================================== */
+.ios-time-picker-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  margin: 12px 0 16px 0;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+.ios-time-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+  /* Smooth fading gradient at top and bottom typical of iOS wheel picker */
+  mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 25%, black 75%, transparent);
+}
+
+.ios-picker-column {
+  flex: 1;
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0; /* allows middle elements to reach center snap point */
+  -webkit-overflow-scrolling: touch;
+}
+
+.ios-picker-column::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
+}
+
+.ios-picker-item {
+  height: 30px;
+  line-height: 30px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  scroll-snap-align: center;
+  transition: all 0.15s ease;
+  user-select: none;
+  width: 100%;
+  text-align: center;
+}
+
+.ios-picker-item.active {
+  color: var(--color-primary);
+  font-size: 24px;
+  font-weight: 800;
+  transform: scale(1.15);
+}
+
+.ios-picker-highlight {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 32px;
+  margin-top: -16px;
+  border-top: 1.5px solid rgba(0, 168, 255, 0.25);
+  border-bottom: 1.5px solid rgba(0, 168, 255, 0.25);
+  pointer-events: none;
+  background-color: rgba(0, 168, 255, 0.05);
+}
+
+/* Selected Time Chips */
+.selected-times-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 36px;
+}
+
+.time-chip {
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: popIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 2px 4px rgba(0, 168, 255, 0.1);
+}
+
+.time-chip button {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.time-chip button:hover {
+  opacity: 0.7;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   PACIENTE - MEUS REMÉDIOS (SCREEN 13)
+   ========================================================================== */
+.profile-med-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg); /* Arredondado harmonioso para o design do app */
+  padding: 14px 16px;
+  background-color: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.profile-med-item:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0, 168, 255, 0.4);
+  border-color: var(--color-primary);
+}
+
+.profile-med-item:active {
+  transform: scale(0.98);
+  box-shadow: none;
+  background-color: var(--color-bg-secondary);
+}
+
+.profile-med-item-left {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-med-item-icon {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-primary);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-med-item-info h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+.profile-med-item-info p {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+.profile-med-item-time {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* ==========================================================================
+   NEW COMPONENTS (IMPLEMENTATION PLAN)
+   ========================================================================== */
+
+/* 1. Onboarding Carousel */
+.onboarding-carousel {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.onboarding-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.onboarding-slide.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+.onboarding-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.onboarding-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  transition: all 0.3s ease;
+}
+.onboarding-dots .dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background-color: var(--color-primary);
+}
+
+/* 2. Medication Reminder Toast */
+.med-reminder-toast {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  z-index: 1000;
+  transform: translateY(-150%);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease, visibility 0.4s ease;
+}
+.med-reminder-toast.active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+.med-reminder-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.med-reminder-text {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.med-reminder-text strong {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+}
+.med-reminder-text span {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+.med-reminder-dismiss {
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* 3. Bottom Sheet */
+.bottom-sheet-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.4);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.bottom-sheet-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+.bottom-sheet-content {
+  background-color: var(--color-bg-main);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  padding: 24px;
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+}
+.bottom-sheet-overlay.active .bottom-sheet-content {
+  transform: translateY(0);
+}
+.bottom-sheet-handle {
+  width: 40px;
+  height: 4px;
+  background-color: var(--color-border);
+  border-radius: 2px;
+  align-self: center;
+  margin-bottom: 24px;
+}
+.bottom-sheet-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.bottom-sheet-action:active {
+  transform: scale(0.98);
+}
+.bottom-sheet-action.danger {
+  color: var(--color-danger-text);
+  background-color: var(--color-danger-bg);
+  border-color: var(--color-danger-border);
+}
+.bottom-sheet-cancel {
+  background: none;
+  border: none;
+  padding: 16px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+/* Sidebar removal and styling adjustments */
+.sidebar {
+  display: none !important;
+}
+
+.dashboard-container {
+  justify-content: center;
+}
+
+/* Subtle floating reset button for presenter's pitch convenience */
+.floating-reset-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #1E293B;
+  border: 1px solid #334155;
+  color: #94A3B8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-lg), 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+}
+
+.floating-reset-btn:hover {
+  background-color: #334155;
+  color: var(--color-white);
+  border-color: #475569;
+  transform: rotate(60deg);
+}
+
+.floating-reset-btn:active {
+  transform: scale(0.95);
+}
+
+/* ==========================================================================
+   SVG Icon Sprite System
+   Icons are defined once in an inline <svg> sprite and referenced via <use>.
+   This class provides the default presentation attributes.
+   ========================================================================== */
+.icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+#global-nav-container {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+}
+
+
+/* Spacing Utilities */
+.mt-auto { margin-top: auto !important; }
+.mt-8 { margin-top: 8px !important; }
+.mt-16 { margin-top: 16px !important; }
+.mt-24 { margin-top: 24px !important; }
+.mt-32 { margin-top: 32px !important; }
+
+.mb-4 { margin-bottom: 4px !important; }
+.mb-8 { margin-bottom: 8px !important; }
+.mb-12 { margin-bottom: 12px !important; }
+.mb-16 { margin-bottom: 16px !important; }
+.mb-20 { margin-bottom: 20px !important; }
+.mb-24 { margin-bottom: 24px !important; }
+.mb-32 { margin-bottom: 32px !important; }
+
+/* Display & Flex */
+.d-none { display: none !important; }
+.d-flex { display: flex !important; }
+.flex-col { flex-direction: column !important; }
+.align-center { align-items: center !important; }
+.justify-between { justify-content: space-between !important; }
+.gap-4 { gap: 4px !important; }
+.gap-8 { gap: 8px !important; }
+.gap-10 { gap: 10px !important; }
+.gap-12 { gap: 12px !important; }
+.gap-16 { gap: 16px !important; }
+
+/* Text Utilities */
+.text-danger { color: var(--color-danger-text) !important; }
+.text-primary { color: var(--color-primary) !important; }
+.text-muted { color: var(--color-text-muted) !important; }
+.text-dark { color: var(--color-text-dark) !important; }
+.text-size-11 { font-size: 11px !important; }
+.text-size-12 { font-size: 12px !important; }
+.text-size-13 { font-size: 13px !important; }
+.text-size-14 { font-size: 14px !important; }
+.text-size-16 { font-size: 16px !important; }
+.text-size-18 { font-size: 18px !important; }
+.text-size-22 { font-size: 22px !important; }
+.text-size-24 { font-size: 24px !important; }
+.font-bold { font-weight: 700 !important; }
+.font-extrabold { font-weight: 800 !important; }

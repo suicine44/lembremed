@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --color-primary: #00A8FF;
+  --color-primary-dark: #008AD3;
+  --color-primary-light: #EBF8FF;
+  --color-bg-main: #FFFFFF;
+  --color-bg-secondary: #F8FAFC;
+  --color-text-dark: #1E293B;
+  --color-text-muted: #475569;
+  --color-text-light: #3F4E60;
+  --color-border: #CBD5E1;
+  --color-white: #FFFFFF;
+
+  /* Alert States */
+  --color-success-bg: #DCFCE7;
+  --color-success-text: #166534;
+  --color-success-border: #BBF7D0;
+  
+  --color-warning-bg: #FEF9C3;
+  --color-warning-text: #854D0E;
+  --color-warning-border: #FEF08A;
+  
+  --color-danger-bg: #FEE2E2;
+  --color-danger-text: #991B1B;
+  --color-danger-border: #FECACA;
+  
+  --color-info-bg: #E0F2FE;
+  --color-info-text: #075985;
+  --color-info-border: #BAE6FD;
+
+  /* Typography */
+  --font-sans: 'Outfit', 'Inter', system-ui, sans-serif;
+  
+  /* Borders & Spacing */
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --radius-pill: 9999px;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 12px -2px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.08);
+}
+
+.phone-device.high-contrast {
+  --color-primary: #0056B3;
+  --color-primary-dark: #003366;
+  --color-primary-light: #E6F0FA;
+  --color-bg-main: #FFFFFF;
+  --color-bg-secondary: #F1F5F9;
+  --color-text-dark: #000000;
+  --color-text-muted: #1A1A1A;
+  --color-text-light: #2D2D2D;
+  --color-border: #475569;
+  --color-danger-bg: #FFF1F1;
+  --color-danger-text: #991B1B;
+  --color-danger-border: #991B1B;
+}
+
+/* Ensure 'Sair' buttons are readable and high contrast */
+.phone-device.high-contrast #btn-cg-logout,
+.phone-device.high-contrast #btn-patient-logout {
+  border: 1.5px solid var(--color-danger-border) !important;
+  background-color: var(--color-bg-main) !important;
+}
+
+.phone-device.high-contrast #btn-cg-logout div,
+.phone-device.high-contrast #btn-patient-logout div,
+.phone-device.high-contrast #btn-cg-logout svg,
+.phone-device.high-contrast #btn-patient-logout svg {
+  color: var(--color-danger-text) !important;
+}
+
+/* Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #0F172A;
+  color: #E2E8F0;
+  min-height: 100vh;
+  display: flex;
+  overflow: hidden;
+  --font-scale: 1.00;
+}
+
+body.font-small {
+  --font-scale: 0.85;
+}
+
+body.font-medium {
+  --font-scale: 1.00;
+}
+
+body.font-large {
+  --font-scale: 1.15;
+}
+
+body.font-xlarge {
+  --font-scale: 1.30;
+}

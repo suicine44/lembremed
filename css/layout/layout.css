@@ -1,0 +1,331 @@
+/* Simulator Dashboard Structure */
+.dashboard-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Sidebar Controller */
+.sidebar {
+  width: 320px;
+  background-color: #1E293B;
+  border-right: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: 24px;
+  border-bottom: 1px solid #334155;
+}
+
+/* Role Switcher in Sidebar */
+.role-switcher-container {
+  padding: 16px 24px 12px 24px;
+  border-bottom: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.role-switcher-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.role-switcher-tabs {
+  display: flex;
+  background-color: #0F172A;
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 2px;
+}
+
+.role-switcher-tab {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #94A3B8;
+  padding: 8px 4px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.role-switcher-tab:hover {
+  color: var(--color-white);
+}
+
+.role-switcher-tab.active {
+  background-color: #334155;
+  color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+.screen-btn.hidden-by-role {
+  display: none !important;
+}
+
+.sidebar-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-header p {
+  font-size: 13px;
+  color: var(--color-text-light);
+  margin-top: 4px;
+}
+
+.screen-list {
+  padding: 16px;
+  overflow-y: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.screen-btn {
+  background: none;
+  border: 1px solid transparent;
+  color: #94A3B8;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  text-align: left;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.screen-btn:hover {
+  background-color: #334155;
+  color: var(--color-white);
+}
+
+.screen-btn.active {
+  background-color: rgba(0, 168, 255, 0.15);
+  border-color: rgba(0, 168, 255, 0.4);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.screen-number {
+  background-color: #334155;
+  color: #94A3B8;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.screen-btn.active .screen-number {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.sidebar-footer {
+  padding: 20px 24px;
+  border-top: 1px solid #334155;
+  font-size: 12px;
+  color: var(--color-text-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reset-btn {
+  background-color: #334155;
+  border: none;
+  color: var(--color-white);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.reset-btn:hover {
+  background-color: #475569;
+}
+
+/* Main Simulator Workspace */
+.simulator-workspace {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  position: relative;
+  background-radial: radial-gradient(circle, #1E293B 0%, #0F172A 100%);
+  overflow-y: auto;
+}
+
+/* Physical Phone Container Frame */
+.phone-device {
+  width: 410px;
+  height: 864px;
+  background-color: #1E293B;
+  border: 10px solid #000000;
+  border-radius: 48px;
+  box-shadow: var(--shadow-lg), 0 25px 50px -12px rgba(0,0,0,0.5);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+/* Phone physical buttons and hardware notches */
+.phone-device::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 28px;
+  background-color: #000000;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 1000;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: var(--color-text-dark);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Phone Status Bar overlay */
+.status-bar {
+  height: 38px;
+  padding: 0 32px 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  background-color: var(--color-white);
+  z-index: 999;
+  flex-shrink: 0;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Virtual Screens Container */
+.screens-viewport {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Individual Replicated Screens */
+.app-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  background-color: var(--color-white);
+}
+
+.app-screen.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+/* Universal Screen Header */
+.screen-header {
+  padding: 16px 20px 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-white);
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo .logo-img {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+/* Main scrollable body of each screen */
+.screen-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px 20px 24px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Bottom Home Indicator overlay */
+.home-indicator-bar {
+  height: 20px;
+  width: 100%;
+  background-color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  flex-shrink: 0;
+}
+
+.home-indicator {
+  width: 120px;
+  height: 5px;
+  background-color: #000000;
+  border-radius: 10px;
+}

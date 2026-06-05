@@ -1,0 +1,33 @@
+{
+  "name": "lembremed",
+  "version": "1.0.0",
+  "description": "LembreMed is an interactive, mobile-first application designed to assist in the healthcare routine of elderly individuals, serving as a bidirectional simulator for both patients and caregivers. The project provides a smooth mobile interface for medication scheduling, daily dosage compliance, and emergency alert channels.",
+  "main": "test_env.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint js/**/*.js",
+    "build": "echo \"No build step defined (Vanilla JS)\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suicine44/lembremed.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/suicine44/lembremed/issues"
+  },
+  "homepage": "https://github.com/suicine44/lembremed#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.4.1",
+    "globals": "^17.6.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1"
+  }
+}
