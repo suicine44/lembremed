@@ -95,7 +95,7 @@
 .heart-badge-circle {
   width: 96px;
   height: 96px;
-  border-radius: 28px;
+  border-radius: var(--radius-lg);
   background-color: var(--color-primary);
   display: flex;
   align-items: center;
