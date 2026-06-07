@@ -139,8 +139,8 @@ function announceToScreenReader(message) {
 function createContrastToggle(toggleId, storageKey, pillId, thumbId) {
   const toggle = document.getElementById(toggleId);
   if (!toggle) return;
-  const pill = pillId ? document.getElementById(pillId) : toggle.querySelector('div[style*="position: relative"]');
-  const thumb = thumbId ? document.getElementById(thumbId) : (pill ? pill.querySelector('div') : null);
+  const pill = pillId ? document.getElementById(pillId) : toggle.querySelector('.toggle-pill');
+  const thumb = thumbId ? document.getElementById(thumbId) : (pill ? pill.querySelector('.toggle-thumb') : null);
   if (!pill || !thumb) return;
 
   // Restore from localStorage
