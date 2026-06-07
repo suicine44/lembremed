@@ -139,7 +139,7 @@ function renderPatientHomeChecklist() {
     const isPast = window.AgendaLogic.isTimePassed(med.time);
     const isDelayed = !isTaken && isPast;
 
-    row.className = `med-row ${isTaken ? 'taken' : (isDelayed ? 'atrasado' : '')}`;
+    row.className = `med-row ${isTaken ? 'taken' : (isDelayed ? 'atrasado' : 'pendente')}`;
 
     let iconHtml = '';
     if (med.name.toLowerCase().includes('insulina')) {
@@ -190,6 +190,16 @@ function renderPatientHomeChecklist() {
     row.addEventListener('click', () => {
       const nowTaken = med.status !== 'tomado';
       med.status = nowTaken ? 'tomado' : 'pendente';
+
+      const pk = Object.keys(appState.patients).find(k => k !== '__sync');
+      if (pk && appState.patients[pk]) {
+        if (!appState.patients[pk].history) appState.patients[pk].history = [];
+        appState.patients[pk].history.push({
+          type: nowTaken ? 'taken' : 'unmarked',
+          medName: med.name,
+          timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+        });
+      }
       row.setAttribute('aria-checked', nowTaken ? 'true' : 'false');
 
       if (med.status === 'tomado' && typeof checkAndDismissToast === 'function') {

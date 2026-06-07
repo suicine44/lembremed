@@ -241,8 +241,28 @@ function toggleMedStatus(date, index) {
   if (med.status === 'tomado') {
     med.status = 'pendente';
     announceToScreenReader(`Medicamento ${med.name} desmarcado`);
+
+    const pk = Object.keys(appState.patients).find(k => k !== '__sync');
+    if (pk && appState.patients[pk]) {
+      if (!appState.patients[pk].history) appState.patients[pk].history = [];
+      appState.patients[pk].history.push({
+        type: 'unmarked',
+        medName: med.name,
+        timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      });
+    }
   } else {
     med.status = 'tomado';
+
+    const pk = Object.keys(appState.patients).find(k => k !== '__sync');
+    if (pk && appState.patients[pk]) {
+      if (!appState.patients[pk].history) appState.patients[pk].history = [];
+      appState.patients[pk].history.push({
+        type: 'taken',
+        medName: med.name,
+        timestamp: new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+      });
+    }
     announceToScreenReader(`Medicamento ${med.name} marcado como tomado`);
     if (typeof checkAndDismissToast === 'function') {
       checkAndDismissToast(med.name);

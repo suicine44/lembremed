@@ -59,7 +59,8 @@ if (btnSavePatient) {
       adherence: 100,
       meds: [],
       alerts: [],
-      notes: []
+      notes: [],
+      history: []
     };
 
     // Limpa os campos
@@ -157,37 +158,60 @@ function renderPatientAlerts() {
     });
   }
 
-  // 2. Add Medication Actions (History)
-  if (patient.meds && patient.meds.length > 0) {
-    patient.meds.forEach((med, idx) => {
-      const isPast = window.AgendaLogic.isTimePassed(med.time);
-
-      if (med.status === 'tomado') {
+  // 2. Add Persistent History Events
+  if (patient.history && patient.history.length > 0) {
+    patient.history.forEach((event, idx) => {
+      if (event.type === 'registered') {
         historyLogs.push({
-          id: `med_taken_${idx}`,
+          id: `hist_reg_${idx}`,
+          type: 'history',
+          severity: 'info',
+          title: 'Novo Medicamento',
+          text: `Você cadastrou <strong>${event.medName}</strong> (${event.dose}) para os horários: ${event.times.join(', ')}.`,
+          time: event.timestamp
+        });
+      } else if (event.type === 'taken') {
+        historyLogs.push({
+          id: `hist_taken_${idx}`,
           type: 'history',
           severity: 'success',
           title: 'Medicamento Tomado',
-          text: `Você tomou <strong>${med.name}</strong> (${med.dose}).`,
-          time: med.time
+          text: `Você marcou <strong>${event.medName}</strong> como tomado.`,
+          time: event.timestamp
         });
-      } else if (isPast) {
+      } else if (event.type === 'unmarked') {
         historyLogs.push({
-          id: `med_delayed_${idx}`,
-          type: 'history',
-          severity: 'danger',
-          title: 'Medicamento Atrasado',
-          text: `O horário de <strong>${med.name}</strong> (${med.dose}) já passou e ainda não foi marcado como tomado.`,
-          time: med.time
-        });
-      } else {
-        // Future medication
-        historyLogs.push({
-          id: `med_pending_${idx}`,
+          id: `hist_unmarked_${idx}`,
           type: 'history',
           severity: 'warning',
+          title: 'Medicamento Desmarcado',
+          text: `Você desmarcou <strong>${event.medName}</strong>.`,
+          time: event.timestamp
+        });
+      }
+    });
+  }
+
+  // 3. Add Current Critical Alerts (Delayed meds not yet taken)
+  if (patient.meds && patient.meds.length > 0) {
+    patient.meds.forEach((med, idx) => {
+      const isPast = window.AgendaLogic.isTimePassed(med.time);
+      if (med.status !== 'tomado' && isPast) {
+        historyLogs.push({
+          id: `med_delayed_crit_${idx}`,
+          type: 'critical',
+          severity: 'danger',
+          title: 'Medicamento Atrasado',
+          text: `Atenção! Você ainda não tomou <strong>${med.name}</strong> das ${med.time}.`,
+          time: med.time
+        });
+      } else if (med.status !== 'tomado' && !isPast) {
+         historyLogs.push({
+          id: `med_pending_next_${idx}`,
+          type: 'next',
+          severity: 'warning',
           title: 'Próximo Medicamento',
-          text: `Lembre-se de tomar <strong>${med.name}</strong> (${med.dose}) no horário agendado.`,
+          text: `Lembre-se de tomar <strong>${med.name}</strong> no horário agendado (${med.time}).`,
           time: med.time
         });
       }
@@ -433,6 +457,7 @@ if (btnDismissReminder) {
 const medBottomSheet = document.getElementById('med-bottom-sheet');
 const btnCloseBottomSheet = document.getElementById('btn-close-bottom-sheet');
 const btnRemoveMed = document.getElementById('btn-remove-med');
+const btnEditMedTime = document.getElementById('btn-edit-med-time');
 let selectedMedForEdit = null;
 
 function attachMedClickListener() {
@@ -465,6 +490,40 @@ function attachMedClickListener() {
 if (btnCloseBottomSheet) {
   btnCloseBottomSheet.addEventListener('click', () => {
     if (medBottomSheet) medBottomSheet.classList.remove('active');
+  });
+}
+
+if (btnEditMedTime) {
+  btnEditMedTime.addEventListener('click', () => {
+    if (selectedMedForEdit !== null) {
+      if (medBottomSheet) medBottomSheet.classList.remove('active');
+
+      // Navigate to Screen 5 Phase 2
+      showScreen('screen-5');
+      const searchPhase = document.getElementById('med-search-phase');
+      const timesPhase = document.getElementById('med-times-phase');
+      if (searchPhase && timesPhase) {
+        searchPhase.classList.add('d-none');
+        searchPhase.classList.remove('d-flex');
+        timesPhase.classList.remove('d-none');
+        timesPhase.classList.add('d-flex');
+      }
+
+      // Populate preview
+      const previewName = document.getElementById('preview-med-name');
+      const previewDose = document.getElementById('preview-med-dose');
+      if (previewName) previewName.textContent = selectedMedForEdit.med.name;
+      if (previewDose) previewDose.textContent = selectedMedForEdit.med.dose;
+
+      // Reset times to current med time
+      window.addedTimes = [selectedMedForEdit.med.time];
+      if (typeof renderTimeChips === 'function') renderTimeChips();
+
+      // Need to handle the update logic in btnConfirmMedTimes or replace it
+      // For now, let's mark it as an edit session
+      window.isEditingMed = true;
+      window.originalMedToEdit = JSON.parse(JSON.stringify(selectedMedForEdit.med));
+    }
   });
 }
 
