@@ -415,7 +415,9 @@ if (btnBackToSearch) {
     const timesPhase = document.getElementById('med-times-phase');
     if (searchPhase && timesPhase) {
       timesPhase.classList.add('d-none');
+      timesPhase.classList.remove('d-flex');
       searchPhase.classList.remove('d-none');
+      searchPhase.classList.add('d-flex');
     }
   });
 }
@@ -484,7 +486,9 @@ if (btnConfirmMedTimes) {
     const timesPhase = document.getElementById('med-times-phase');
     if (searchPhase && timesPhase) {
       timesPhase.classList.add('d-none');
+      timesPhase.classList.remove('d-flex');
       searchPhase.classList.remove('d-none');
+      searchPhase.classList.add('d-flex');
     }
     if (searchInput) searchInput.value = '';
 
@@ -540,7 +544,7 @@ if (btnFlow5) {
       if (searchPhase && timesPhase) {
         searchPhase.classList.add('d-none');
         timesPhase.classList.remove('d-none');
-        timesPhase.style.display = 'flex'; // Ensure flex layout if d-none was removed
+        timesPhase.classList.add('d-flex');
 
         // Populate iOS Time picker columns dynamically
         populatePickerColumns();

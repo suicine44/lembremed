@@ -172,21 +172,28 @@ function renderAgenda() {
 
     data.meds.forEach((med, index) => {
       const card = document.createElement('div');
-      card.className = `agenda-med-card status-${med.status}`;
+
+      const todayStr = new Date().toISOString().split('T')[0];
+      let displayStatus = med.status;
+      if (med.status === 'pendente' && selectedDate === todayStr && window.AgendaLogic.isTimePassed(med.time)) {
+        displayStatus = 'atrasado';
+      }
+
+      card.className = `agenda-med-card status-${displayStatus}`;
       card.setAttribute('data-med-index', index);
       card.setAttribute('tabindex', '0'); // Accessibility
       card.setAttribute('role', 'button');
-      card.setAttribute('aria-label', `Medicamento ${med.name}, dose ${med.dose}, às ${med.time}, status ${med.status}`);
+      card.setAttribute('aria-label', `Medicamento ${med.name}, dose ${med.dose}, às ${med.time}, status ${displayStatus}`);
 
       let badgeHtml = '';
-      if (med.status === 'tomado') {
+      if (displayStatus === 'tomado') {
         badgeHtml = `
           <div class="agenda-status-badge tomado">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             Tomado
           </div>
         `;
-      } else if (med.status === 'atrasado') {
+      } else if (displayStatus === 'atrasado') {
         badgeHtml = `
           <div class="agenda-status-badge atrasado">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -237,6 +244,9 @@ function toggleMedStatus(date, index) {
   } else {
     med.status = 'tomado';
     announceToScreenReader(`Medicamento ${med.name} marcado como tomado`);
+    if (typeof checkAndDismissToast === 'function') {
+      checkAndDismissToast(med.name);
+    }
   }
 
   // Bidirectional sync with patient home checklist if today
@@ -280,6 +290,8 @@ function updateCalendarStrip() {
   }
 
   const calendarDays = document.querySelectorAll('.calendar-day');
+  const todayStr = new Date().toISOString().split('T')[0];
+
   calendarDays.forEach(dayElement => {
     const dateStr = dayElement.getAttribute('data-date');
 
@@ -297,7 +309,12 @@ function updateCalendarStrip() {
       if (dayData && dayData.meds && dayData.meds.length > 0) {
         const total = dayData.meds.length;
         const taken = dayData.meds.filter(m => m.status === 'tomado').length;
-        const delayed = dayData.meds.filter(m => m.status === 'atrasado').length;
+        let delayed = dayData.meds.filter(m => m.status === 'atrasado').length;
+
+        if (dateStr === todayStr) {
+          const pastMedsNotTaken = dayData.meds.filter(m => m.status === 'pendente' && window.AgendaLogic.isTimePassed(m.time)).length;
+          delayed += pastMedsNotTaken;
+        }
 
         // Clear custom styles
         iconWrapper.style.backgroundColor = '';
