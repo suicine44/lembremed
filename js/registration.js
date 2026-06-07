@@ -415,21 +415,6 @@ function renderTimeChips() {
   });
 }
 
-const btnBackToSearch = document.getElementById('btn-back-to-search');
-if (btnBackToSearch) {
-  btnBackToSearch.addEventListener('click', () => {
-    const searchPhase = document.getElementById('med-search-phase');
-    const timesPhase = document.getElementById('med-times-phase');
-    const screen5Title = document.querySelector('#screen-5 .welcome-title');
-    if (searchPhase && timesPhase) {
-      timesPhase.classList.add('d-none');
-      timesPhase.classList.remove('d-flex');
-      searchPhase.classList.remove('d-none');
-      searchPhase.classList.add('d-flex');
-      if (screen5Title) screen5Title.textContent = "Adicionar seus medicamentos";
-    }
-  });
-}
 
 const btnConfirmMedTimes = document.getElementById('btn-confirm-med-times');
 if (btnConfirmMedTimes) {

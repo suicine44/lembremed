@@ -221,7 +221,6 @@ function renderPatientHomeChecklist() {
       }
 
       // Sync with Screen 6 Agenda Data if the selected day is today
-      const todayStr = new Date().toISOString().split('T')[0];
       const agendaToday = agendaData[todayStr];
       if (agendaToday) {
         const agendaMed = agendaToday.meds.find(m => m.name.toLowerCase() === med.name.toLowerCase());

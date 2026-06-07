@@ -285,7 +285,6 @@ function toggleMedStatus(date, index) {
 
   // Bidirectional sync with patient home checklist if today
   const currentPatientKey = Object.keys(appState.patients).find(k => k !== '__sync');
-  const todayStr = new Date().toISOString().split('T')[0];
   if (date === todayStr && currentPatientKey) {
     const patMeds = patientsProfileData[currentPatientKey] && patientsProfileData[currentPatientKey].meds;
     if (patMeds) {
