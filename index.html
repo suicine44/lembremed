@@ -17,6 +17,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="assets/brand/logo.svg" as="image">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -546,7 +547,7 @@
                 </div>
 
                 <!-- Phase 2: iOS Time Picker (med-times-phase) - Initially Hidden -->
-                <div id="med-times-phase" style="display: none; flex-direction: column; flex-grow: 1; width: 100%;">
+                <div id="med-times-phase" class="d-none flex-grow w-full flex-col">
                   <h2 class="welcome-title" style="font-size: 20px; margin-top: 8px; margin-bottom: 8px;">Definir Horários</h2>
                   <p style="color: var(--color-text-muted); font-size: 13px; margin-bottom: 16px;">Selecione os horários diários para tomar seu remédio.</p>
                   
